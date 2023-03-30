@@ -57,9 +57,17 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 				<div class="messageBody">
 
 <table cellspacing="0" cellpadding="4" border="0">
+<!--
 					<tr>
 						<td><strong>Is this a Rapido request? <xsl:value-of select="notification_data/incoming_request/rapido_request"/></strong></td>
 					</tr>
+-->
+<xsl:if test="notification_data/partner_system_type='ALMA'">
+<tr><td>SUMMIT REQUEST</td></tr>
+</xsl:if>
+<xsl:if test="notification_data/partner_system_type='NGRS'">
+<tr><td>RAPIDO REQUEST</td></tr>
+</xsl:if>
 <tr><td>&#160;</td></tr>
 			            <tr>
 			                <td>
