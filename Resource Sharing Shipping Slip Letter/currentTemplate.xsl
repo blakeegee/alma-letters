@@ -57,26 +57,27 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 				<div class="messageBody">
 
 <table cellspacing="0" cellpadding="4" border="0">
+<!--
 					<tr>
 						<td><strong>Is this a Rapido request? <xsl:value-of select="notification_data/incoming_request/rapido_request"/></strong></td>
 					</tr>
-
+-->
 <xsl:choose>
-<xsl:when test="notification_data/organization_unit/partner_code='CC' or 'CCC' or 'CHEMEK' or 'COCC' or 'CWU' or 'Central Washington University - Brooks Library' or 'EOU' or 'EVSC' or 'EWU' or 'Evergreen State College -  Olympia Campus Library' or 'GFOX_MLRC' or 'GFOX_PCL' or 'GONZ' or 'LANECC' or 'LCC' or 'LINF_MAC' or 'LINF_PDX' or 'MHCC' or 'OHSU' or 'OIT_KFLS' or 'OIT_WILS' or 'OSU' or 'Oregon Health and Science University - OHSU Library' or 'PCC' or 'PSU' or 'PU_FG' or 'PU_HPC' or 'Portland Community College - Rock Creek' or 'Portland State University - PSU Library' or 'REED' or 'SEAU_LAW' or 'SEAU_LEMIEUX' or 'SOU_RCCM' or 'SOU_SOU' or 'SPU' or 'STMU' or 'Southern Oregon University - Hannon Library' or 'UID_LAW' or 'UID_MAIN' or 'UO' or 'UPORT' or 'UPUGS' or 'UW' or 'University of Oregon - Knight Library' or 'WALLA_PETERSON' or 'WALLA_PORTLAND' or 'WHITC' or 'WOU' or 'WPC' or 'WSU_HOLLTERR' or 'WSU_RPOINT' or 'WSU_TRICITIES' or 'WSU_VANCOUVER' or 'WU_LAW' or 'WU_MOH' or 'WU_PNCA' or 'WWO' or 'WWU' or 'Washington State University - Holland and Terrell Libraries' or 'Washington State University - Vancouver Library'">
-<tr><td>SUMMIT REQUEST (Partner code)</td></tr>
+<xsl:when test="notification_data/partner_code='CC' or 'CCC' or 'CHEMEK' or 'COCC' or 'CWU' or 'Central Washington University - Brooks Library' or 'EOU' or 'EVSC' or 'EWU' or 'Evergreen State College -  Olympia Campus Library' or 'GFOX_MLRC' or 'GFOX_PCL' or 'GONZ' or 'LANECC' or 'LCC' or 'LINF_MAC' or 'LINF_PDX' or 'MHCC' or 'OHSU' or 'OIT_KFLS' or 'OIT_WILS' or 'OSU' or 'Oregon Health and Science University - OHSU Library' or 'PCC' or 'PSU' or 'PU_FG' or 'PU_HPC' or 'Portland Community College - Rock Creek' or 'Portland State University - PSU Library' or 'REED' or 'SEAU_LAW' or 'SEAU_LEMIEUX' or 'SOU_RCCM' or 'SOU_SOU' or 'SPU' or 'STMU' or 'Southern Oregon University - Hannon Library' or 'UID_LAW' or 'UID_MAIN' or 'UO' or 'UPORT' or 'UPUGS' or 'UW' or 'University of Oregon - Knight Library' or 'WALLA_PETERSON' or 'WALLA_PORTLAND' or 'WHITC' or 'WOU' or 'WPC' or 'WSU_HOLLTERR' or 'WSU_RPOINT' or 'WSU_TRICITIES' or 'WSU_VANCOUVER' or 'WU_LAW' or 'WU_MOH' or 'WU_PNCA' or 'WWU' or 'Washington State University - Holland and Terrell Libraries' or 'Washington State University - Vancouver Library'">
+<tr><td>SUMMIT REQUEST</td></tr>
 </xsl:when>
 <xsl:otherwise>
-<tr><td>RAPIDO REQUEST (Partner code)</td></tr>
+<tr><td>RAPIDO REQUEST</td></tr>
 </xsl:otherwise>
 </xsl:choose>
-
+<!--
 <xsl:if test="notification_data/partner_system_type='ALMA'">
 <tr><td>SUMMIT REQUEST (SysType)</td></tr>
 </xsl:if>
 <xsl:if test="notification_data/partner_system_type='NGRS'">
 <tr><td>RAPIDO REQUEST (SysType)</td></tr>
 </xsl:if>
-
+-->
 <tr><td>&#160;</td></tr>
 			            <tr>
 			                <td>
