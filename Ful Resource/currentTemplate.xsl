@@ -15,7 +15,6 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 					<xsl:value-of select="notification_data/languages/string"/>
 				</xsl:attribute>
 			</xsl:if>
-
 		<head>
 				<title>
 					<xsl:value-of select="notification_data/general_data/subject"/>
@@ -23,7 +22,6 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 			<xsl:call-template name="generalStyle" />
 		</head>
-
 		<body>
 			<table role='presentation'  cellspacing="0" cellpadding="5" border="0" width="45%">
 				<xsl:if test="notification_data/user_for_printing/name != ''" >
@@ -483,219 +481,86 @@ Under certain conditions specified in the law, libraries and archives are author
 <!--<p style="page-break-before: always"></p> -->
 					<table cellspacing="0" cellpadding="0" border="1" width="45%">
 						<tr>
-						<td style="font-size:16px;width:500px">
-						   <font size="2">Return To: </font>
-						   <br />
-						   <br />
-						  <center>
-							  <b>
-								 <xsl:value-of select="notification_data/organization_unit/name" />
-							  </b>
-						   </center>
-						   <center>
-							  <b>
-								 <xsl:value-of select="notification_data/phys_item_display/owning_library_details/address1" />
-							  </b>
-						   </center>
-						   <center>
-							  <b>
-								 <xsl:value-of select="notification_data/phys_item_display/owning_library_details/address2" />
-							  </b>
-						   </center>
-						   <center>
-							  <b>
-								 <xsl:value-of select="notification_data/phys_item_display/owning_library_details/address3" />
-							  </b>
-						   </center>
-						   <center>
-							  <b>
-								 <xsl:value-of select="notification_data/phys_item_display/owning_library_details/address4" />
-							  </b>
-						   </center>
-						   <center>
-							  <b>
-								 <xsl:value-of select="notification_data/phys_item_display/owning_library_details/address5" />
-							  </b>
-						   </center>
-						   <center>
-							  <b>
-								 <xsl:value-of select="notification_data/phys_item_display/owning_library_details/city" />
-								 <xsl:text>, </xsl:text>
-								 <xsl:value-of select="notification_data/phys_item_display/owning_library_details/state" />
-								 <xsl:text> </xsl:text>
-								 <xsl:value-of select="notification_data/phys_item_display/owning_library_details/postal_code" />
-							  </b>
-						   </center>
-						   <br />
-						</td>
-					 </tr>
-					 <tr>
-						<td style="font-size:16px;width:500px">
-						   <font size="2">Ship To:</font>
-						   <br />
-						   <br />
-						   <center>
-							  <b>
-								 <xsl:value-of select="notification_data/partner_name" />
-							  </b>
-						   </center>
-						   <center>
-							  <b>
-								 <xsl:value-of select="notification_data/partner_shipping_info_list/partner_shipping_info/address1" />
-							  </b>
-						   </center>
-						   <center>
-							  <b>
-								 <xsl:value-of select="notification_data/partner_shipping_info_list/partner_shipping_info/address2" />
-							  </b>
-						   </center>
-						   <center>
-							  <b>
-								 <xsl:value-of select="notification_data/partner_shipping_info_list/partner_shipping_info/address3" />
-							  </b>
-						   </center>
-						   <center>
-							  <b>
-								 <xsl:value-of select="notification_data/partner_shipping_info_list/partner_shipping_info/address4" />
-							  </b>
-						   </center>
-						   <center>
-							  <b>
-								 <xsl:value-of select="notification_data/partner_shipping_info_list/partner_shipping_info/address5" />
-							  </b>
-						   </center>
-						   <center>
-							  <b>
-								 <xsl:value-of select="notification_data/partner_shipping_info_list/partner_shipping_info/city" />
-								 <xsl:text>, </xsl:text>
-								 <xsl:value-of select="notification_data/partner_shipping_info_list/partner_shipping_info/state" />
-								 <xsl:text> </xsl:text>
-								 <xsl:value-of select="notification_data/partner_shipping_info_list/partner_shipping_info/postal_code" />
-							  </b>
-						   </center>
-						   <br />
-						</td>
-					 </tr>
-				  </table>
-					</xsl:if>
-						<xsl:if test="((notification_data/incoming_request/rapido_request='false') and (notification_data/request_type='Ship physically') and (contains(notification_data/incoming_request/partner_code, '_RAPID')))" >
-                              <tr>
-                                 <td>
-                                    <b>
-                                       <xsl:text>_______________________________________________</xsl:text>
-                                    </b>
-                                 </td>
-                              </tr>
+							<td style="font-size:16px;width:500px">
+								<font size="2">Return To: </font>
+								<br /><br />
+								<center><b><xsl:value-of select="notification_data/organization_unit/name" /></b></center>
+								<center><b><xsl:value-of select="notification_data/phys_item_display/owning_library_details/address1" /></b></center>
+							    <center><b><xsl:value-of select="notification_data/phys_item_display/owning_library_details/address2" /></b></center>
+							    <center><b><xsl:value-of select="notification_data/phys_item_display/owning_library_details/address3" /></b></center>
+							    <center><b><xsl:value-of select="notification_data/phys_item_display/owning_library_details/address4" /></b></center>
+							    <center><b><xsl:value-of select="notification_data/phys_item_display/owning_library_details/address5" /></b></center>
+							    <center><b>
+									 <xsl:value-of select="notification_data/phys_item_display/owning_library_details/city" />
+									 <xsl:text>, </xsl:text>
+									 <xsl:value-of select="notification_data/phys_item_display/owning_library_details/state" />
+									 <xsl:text> </xsl:text>
+									 <xsl:value-of select="notification_data/phys_item_display/owning_library_details/postal_code" /></b></center>
+							   <br />
+							</td>
+						</tr>
+						<tr>
+							<td style="font-size:16px;width:500px">
+							   <font size="2">Ship To:</font>
+							   <br /><br />
+							   <center><b><xsl:value-of select="notification_data/partner_name" /></b></center>
+							   <center><b><xsl:value-of select="notification_data/partner_shipping_info_list/partner_shipping_info/address1" /></b></center>
+							   <center><b><xsl:value-of select="notification_data/partner_shipping_info_list/partner_shipping_info/address2" /></b></center>
+							   <center><b><xsl:value-of select="notification_data/partner_shipping_info_list/partner_shipping_info/address3" /></b></center>
+							   <center><b><xsl:value-of select="notification_data/partner_shipping_info_list/partner_shipping_info/address4" /></b></center>
+							   <center><b><xsl:value-of select="notification_data/partner_shipping_info_list/partner_shipping_info/address5" /></b></center>
+							   <center><b>
+									 <xsl:value-of select="notification_data/partner_shipping_info_list/partner_shipping_info/city" />
+									 <xsl:text>, </xsl:text>
+									 <xsl:value-of select="notification_data/partner_shipping_info_list/partner_shipping_info/state" />
+									 <xsl:text> </xsl:text>
+									 <xsl:value-of select="notification_data/partner_shipping_info_list/partner_shipping_info/postal_code" /></b></center>
+							   <br />
+							</td>
+						</tr>
+					</table>
+				</xsl:if>
+				<xsl:if test="((notification_data/incoming_request/rapido_request='false') and (notification_data/request_type='Ship physically') and (contains(notification_data/incoming_request/partner_code, '_RAPID')))" >
+					<tr>
+						<td><b><xsl:text>_______________________________________________</xsl:text></b></td>
+					</tr>
 <!--<p style="page-break-before: always"></p> -->
-                              <table cellspacing="0" cellpadding="0" border="1" width="45%">
-                                 <tr>
-                                    <td style="font-size:16px;width:500px">
-                                       <font size="2">Return To: </font>
-                                       <br />
-                                       <br />
-                                      <center>
-                                          <b>
-                                             <xsl:value-of select="notification_data/organization_unit/name" />
-                                          </b>
-                                       </center>
-                                       <center>
-                                          <b>
-                                             <xsl:value-of select="notification_data/phys_item_display/owning_library_details/address1" />
-                                          </b>
-                                       </center>
-                                       <center>
-                                          <b>
-                                             <xsl:value-of select="notification_data/phys_item_display/owning_library_details/address2" />
-                                          </b>
-                                       </center>
-                                       <center>
-                                          <b>
-                                             <xsl:value-of select="notification_data/phys_item_display/owning_library_details/address3" />
-                                          </b>
-                                       </center>
-                                       <center>
-                                          <b>
-                                             <xsl:value-of select="notification_data/phys_item_display/owning_library_details/address4" />
-                                          </b>
-                                       </center>
-                                       <center>
-                                          <b>
-                                             <xsl:value-of select="notification_data/phys_item_display/owning_library_details/address5" />
-                                          </b>
-                                       </center>
-                                       <center>
-                                          <b>
-                                             <xsl:value-of select="notification_data/phys_item_display/owning_library_details/city" />
-                                             <xsl:text>, </xsl:text>
-                                             <xsl:value-of select="notification_data/phys_item_display/owning_library_details/state" />
-                                             <xsl:text> </xsl:text>
-                                             <xsl:value-of select="notification_data/phys_item_display/owning_library_details/postal_code" />
-                                          </b>
-                                       </center>
-                                       <br />
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td style="font-size:16px;width:500px">
-                                       <font size="2">Ship To:</font>
-                                       <br />
-                                       <br />
-                                       <center>
-                                          <b>
-                                             <xsl:value-of select="notification_data/partner_name" />
-                                          </b>
-                                       </center>
-                                       <center>
-                                          <b>
-                                             <xsl:value-of select="notification_data/incoming_request/contact_address" />
-                                          </b>
-                                       </center>
-<!--
-                                       <center>
-                                          <b>
-                                             <xsl:value-of select="notification_data/partner_shipping_info_list/partner_shipping_info/address1" />
-                                          </b>
-                                       </center>
-                                       <center>
-                                          <b>
-                                             <xsl:value-of select="notification_data/partner_shipping_info_list/partner_shipping_info/address2" />
-                                          </b>
-                                       </center>
-                                       <center>
-                                          <b>
-                                             <xsl:value-of select="notification_data/partner_shipping_info_list/partner_shipping_info/address3" />
-                                          </b>
-                                       </center>
-                                       <center>
-                                          <b>
-                                             <xsl:value-of select="notification_data/partner_shipping_info_list/partner_shipping_info/address4" />
-                                          </b>
-                                       </center>
-                                       <center>
-                                          <b>
-                                             <xsl:value-of select="notification_data/partner_shipping_info_list/partner_shipping_info/address5" />
-                                          </b>
-                                       </center>
-                                       <center>
-                                          <b>
-                                             <xsl:value-of select="notification_data/partner_shipping_info_list/partner_shipping_info/city" />
-                                             <xsl:text>, </xsl:text>
-                                             <xsl:value-of select="notification_data/partner_shipping_info_list/partner_shipping_info/state" />
-                                             <xsl:text> </xsl:text>
-                                             <xsl:value-of select="notification_data/partner_shipping_info_list/partner_shipping_info/postal_code" />
-                                          </b>
-                                       </center>
--->
-                                       <br />
-                                    </td>
-                                 </tr>
-                              </table>
-							</xsl:if>
-				</table>
+					<table cellspacing="0" cellpadding="0" border="1" width="45%">
+						<tr>
+							<td style="font-size:16px;width:500px">
+							    <font size="2">Return To: </font>
+							    <br /><br />
+							    <center><b><xsl:value-of select="notification_data/organization_unit/name" /></b></center>
+							    <center><b><xsl:value-of select="notification_data/phys_item_display/owning_library_details/address1" /></b></center>
+							    <center><b><xsl:value-of select="notification_data/phys_item_display/owning_library_details/address2" /></b></center>
+							    <center><b><xsl:value-of select="notification_data/phys_item_display/owning_library_details/address3" /></b></center>
+							    <center><b><xsl:value-of select="notification_data/phys_item_display/owning_library_details/address4" /></b></center>
+							    <center><b><xsl:value-of select="notification_data/phys_item_display/owning_library_details/address5" /></b></center>
+							    <center><b>
+									 <xsl:value-of select="notification_data/phys_item_display/owning_library_details/city" />
+									 <xsl:text>, </xsl:text>
+									 <xsl:value-of select="notification_data/phys_item_display/owning_library_details/state" />
+									 <xsl:text> </xsl:text>
+									 <xsl:value-of select="notification_data/phys_item_display/owning_library_details/postal_code" /></b></center>
+							   <br />
+							</td>
+						</tr>
+						<tr>
+							<td style="font-size:16px;width:500px">
+							    <font size="2">Ship To:</font>
+							    <br /><br />
+							    <center><b><xsl:value-of select="notification_data/partner_name" /></b></center>
+							    <center><b><xsl:value-of select="notification_data/incoming_request/contact_address" /></b></center>
+							    <br />
+							</td>
+						</tr>
+					</table>
+				</xsl:if>
+			</table>
 		</div>
 	</div>
 	<!--<xsl:call-template name="lastFooter" />--> <!-- footer.xsl -->
 </body>
 </html>
-	</xsl:template>
+</xsl:template>
 </xsl:stylesheet>
