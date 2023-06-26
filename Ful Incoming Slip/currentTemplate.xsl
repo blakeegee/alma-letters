@@ -215,7 +215,8 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
          <tr>
                 <td><h3><strong><xsl:value-of select="$fullname"/></strong></h3></td>
         </tr>
-        <tr>
+
+<!--
 <xsl:choose>
 <xsl:when test="notification_data/partner_code='PULL_RAPID'">
                 <td><h3><strong>Pickup at: PULLMAN RAPID ILL</strong></h3></td>
@@ -246,9 +247,16 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 </xsl:otherwise>
 </xsl:choose>
+-->
+
+
+
+      			   <xsl:if test="$libraryname != ''" >
+		<tr>
+                   <td><h3><strong>Pickup at: <xsl:value-of select="$libraryname"/></strong></h3></td>
         </tr>
    </xsl:if>
-						<tr><xsl:choose>
+			<tr><xsl:choose>
 			<xsl:when test="notification_data/partner_name='CC'">
 				<tr>			
 					<td><h3><strong>Partner: Clark College</strong></h3></td>
@@ -527,6 +535,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
             </xsl:otherwise>
 			</xsl:choose>
 </tr>
+   </xsl:if>
 
                         <xsl:if test="notification_data/incoming_request/format='PHYSICAL' ">
 							<xsl:if test="notification_data/pod_name !=''">
@@ -693,7 +702,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
                                  </td>
                               </tr>
                            </table>
--->
+
                            <tr>
                               <td>
                                  <b>
@@ -703,6 +712,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
                                  <br />
                               </td>
                            </tr>
+-->
                            <xsl:choose>
                               <xsl:when test="(notification_data/partner_system_type!='ALMA')">
                                  <table width="45%">
@@ -712,142 +722,102 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
                                     <tr><td><b>@@external_identifier@@:&#160;</b>
                                     <xsl:value-of select="notification_data/group_qualifier" /></td></tr>
                                  </table>
-                                 <table cellspacing="0" cellpadding="0" border="1">
-                                    <tr>
-                                       <td style="font-size:16px;width:350px">
-                                          <font size="2">Return To:&#160;</font>
-                                          <br />
-                                          <br />
-                                          <center>
-                                             <b>
-                                                <xsl:value-of select="notification_data/items/physical_item_display_for_printing/owning_library_details/address1" />
-                                             </b>
-                                          </center>
-                                          <center>
-                                             <b>
-                                                <xsl:value-of select="notification_data/items/physical_item_display_for_printing/owning_library_details/address2" />
-                                             </b>
-                                          </center>
-                                          <center>
-                                             <b>
-                                                <xsl:value-of select="notification_data/items/physical_item_display_for_printing/owning_library_details/address3" />
-                                             </b>
-                                          </center>
-                                          <center>
-                                             <b>
-                                                <xsl:value-of select="notification_data/items/physical_item_display_for_printing/owning_library_details/address4" />
-                                             </b>
-                                          </center>
-                                          <center>
-                                             <b>
-                                                <xsl:value-of select="notification_data/items/physical_item_display_for_printing/owning_library_details/address5" />
-                                             </b>
-                                          </center>
-                                          <center>
-                                             <b>
-                                                <xsl:value-of select="notification_data/items/physical_item_display_for_printing/owning_library_details/city" />
-                                                <xsl:text>,&#160;</xsl:text>
-                                                <xsl:value-of select="notification_data/items/physical_item_display_for_printing/owning_library_details/state" />
-                                                <xsl:text />
-                                                <xsl:text>&#160;</xsl:text>
-                                                <xsl:value-of select="notification_data/items/physical_item_display_for_printing/owning_library_details/postal_code" />
-                                             </b>
-                                          </center>
-                                          <br />
-                                       </td>
-                                    </tr>
+                                 <table cellspacing="0" cellpadding="0" border="1" width="45%">
+									<tr>
+										<td style="font-size:16px;width:500px">
+											<font size="2">Return To: </font>
+											<br /><br />
+											<center><b><xsl:value-of select="notification_data/organization_unit/name" /></b></center>
+											<center><b><xsl:value-of select="notification_data/items/physical_item_display_for_printing/owning_library_details/address1" /></b></center>
+											<center><b><xsl:value-of select="notification_data/items/physical_item_display_for_printing/owning_library_details/address2" /></b></center>
+											<center><b><xsl:value-of select="notification_data/items/physical_item_display_for_printing/owning_library_details/address3" /></b></center>
+											<center><b><xsl:value-of select="notification_data/items/physical_item_display_for_printing/owning_library_details/address4" /></b></center>
+											<center><b><xsl:value-of select="notification_data/items/physical_item_display_for_printing/owning_library_details/address5" /></b></center>
+											<center><b>
+												 <xsl:value-of select="notification_data/items/physical_item_display_for_printing/owning_library_details/city" />
+												 <xsl:text>, </xsl:text>
+												 <xsl:value-of select="notification_data/items/physical_item_display_for_printing/owning_library_details/state" />
+												 <xsl:text> </xsl:text>
+												 <xsl:value-of select="notification_data/items/physical_item_display_for_printing/owning_library_details/postal_code" /></b></center>
+										   <br />
+										</td>
+									</tr>
 								<xsl:if test="notification_data/borrowing_library_address !=''">
-                                    <tr>
-                                       <td style="font-size:18px;width:350px">
-                                          <font size="2">Ship To:&#160;</font>
-                                          <br />
-                                          <br />
-                                          <center>
-                                             <b>
-                                                <xsl:value-of select="notification_data/borrowing_library_address/line1" />
-                                             </b>
-                                          </center>
-                                          <center>
-                                             <b>
-                                                <xsl:value-of select="notification_data/borrowing_library_address/line2" />
-                                             </b>
-                                          </center>
-                                          <center>
-                                             <b>
-                                                <xsl:value-of select="notification_data/borrowing_library_address/line3" />
-                                             </b>
-                                          </center>
-                                          <center>
-                                             <b>
-                                                <xsl:value-of select="notification_data/borrowing_library_address/line4" />
-                                             </b>
-                                          </center>
-                                          <center>
-                                             <b>
-                                                <xsl:value-of select="notification_data/borrowing_library_address/line5" />
-                                             </b>
-                                          </center>
-                                          <center>
-                                             <b>
-                                                <xsl:value-of select="notification_data/borrowing_library_address/city" />
-                                                <xsl:text>,&#160;</xsl:text>
-                                                <xsl:value-of select="notification_data/borrowing_library_address/state_province" />
-                                                <xsl:text />
-                                                <xsl:text>&#160;</xsl:text>
-                                                <xsl:value-of select="notification_data/borrowing_library_address/postal_code" />
-                                             </b>
-                                          </center>
-                                          <br />
-                                       </td>
-                                    </tr>
+						<tr>
+							<td style="font-size:16px;width:500px">
+							   <font size="2">Ship To:</font>
+							   <br /><br />
+							   <center><b><xsl:value-of select="notification_data/partner_name" /></b></center>
+							   <center><b><xsl:value-of select="notification_data/borrowing_library_address/line1" /></b></center>
+							   <center><b><xsl:value-of select="notification_data/borrowing_library_address/line2" /></b></center>
+							   <center><b><xsl:value-of select="notification_data/borrowing_library_address/line3" /></b></center>
+							   <center><b><xsl:value-of select="notification_data/borrowing_library_address/line4" /></b></center>
+							   <center><b><xsl:value-of select="notification_data/borrowing_library_address/line5" /></b></center>
+							   <center><b>
+									 <xsl:value-of select="notification_data/borrowing_library_address/city" />
+									 <xsl:text>, </xsl:text>
+									 <xsl:value-of select="notification_data/borrowing_library_address/state_province" />
+									 <xsl:text> </xsl:text>
+									 <xsl:value-of select="notification_data/borrowing_library_address/postal_code" /></b></center>
+							   <br />
+							</td>
+						</tr>
 								</xsl:if>
 								<xsl:if test="notification_data/borrowing_library_address =''">
-                                    <tr>
-                                       <td style="font-size:18px;width:350px">
-                                          <font size="2">Ship To:&#160;</font>
-                                          <br />
-                                          <br />
-                                          <center>
-                                             <b>
-                                                <xsl:value-of select="notification_data/incoming_request/contact_address" />
-                                             </b>
-                                          </center>
-										  <br/>
+						<tr>
+							<td style="font-size:16px;width:500px">
+							    <font size="2">Ship To:</font>
+							    <br /><br />
 <!--
-                                          <center>
-                                             <b>
-                                                <xsl:value-of select="notification_data/borrowing_library_address/line2" />
-                                             </b>
-                                          </center>
-                                          <center>
-                                             <b>
-                                                <xsl:value-of select="notification_data/borrowing_library_address/line3" />
-                                             </b>
-                                          </center>
-                                          <center>
-                                             <b>
-                                                <xsl:value-of select="notification_data/borrowing_library_address/line4" />
-                                             </b>
-                                          </center>
-                                          <center>
-                                             <b>
-                                                <xsl:value-of select="notification_data/borrowing_library_address/line5" />
-                                             </b>
-                                          </center>
-                                          <center>
-                                             <b>
-                                                <xsl:value-of select="notification_data/borrowing_library_address/city" />
-                                                <xsl:text>,&#160;</xsl:text>
-                                                <xsl:value-of select="notification_data/borrowing_library_address/state_province" />
-                                                <xsl:text />
-                                                <xsl:text>&#160;</xsl:text>
-                                                <xsl:value-of select="notification_data/borrowing_library_address/postal_code" />
-                                             </b>
-                                          </center>
-                                          <br />
+Examples of contact_address strings
+
+Interlibrary Loan &amp; Library Express, Zimmerman Library, University of New Mexico, 1900 Roma Ave NE, Albuquerque, NM 87131-0001 , (5 internal commas)
+UT Libraries - Interlibrary Services, 101 E 21st STOP S5463, First Floor Dock, Austin, TX 78712-1492 (4 internal commas)
+Blake's office, 123 Library Lane, Pullman, WA 99163 (3 internal commas)
+Blake's office, Pullman, WA 99163 (2 internal commas)
 -->
-                                       </td>
-                                    </tr>
+				<xsl:variable name="rapidAddress" select="normalize-space(notification_data/incoming_request/contact_address)"/>
+				<xsl:variable name="raPart1" select="substring-before($rapidAddress, ',')"/>
+				<xsl:variable name="raPart2" select="substring-after($rapidAddress, ',')"/>
+				<xsl:variable name="raPart3" select="substring-before($raPart2, ',')"/>
+				<xsl:variable name="raPart4" select="substring-after($raPart2, ',')"/>
+				<xsl:variable name="raPart5" select="substring-before($raPart4, ',')"/>
+				<xsl:variable name="raPart6" select="substring-after($raPart4, ',')"/>
+				<xsl:variable name="raPart7" select="substring-before($raPart6, ',')"/>
+				<xsl:variable name="raPart8" select="substring-after($raPart6, ',')"/>
+				<xsl:variable name="raPart9" select="substring-before($raPart8, ',')"/>
+				<xsl:variable name="raPart10" select="substring-after($raPart8, ',')"/>
+							    <center><b><xsl:value-of select="notification_data/partner_name" /></b></center>
+								<xsl:choose>
+									<xsl:when test="($raPart10 != '')" >
+										<center><b><xsl:value-of select="$raPart1" /></b></center>
+										<center><b><xsl:value-of select="$raPart3" /></b></center>
+										<center><b><xsl:value-of select="$raPart5" /></b></center>
+										<center><b><xsl:value-of select="$raPart7" /></b></center>
+										<center><b><xsl:value-of select="$raPart8" /></b></center>
+									</xsl:when>
+									<xsl:when test="(($raPart10 = '') and ($raPart8 != ''))" >
+										<center><b><xsl:value-of select="$raPart1" /></b></center>
+										<center><b><xsl:value-of select="$raPart3" /></b></center>
+										<center><b><xsl:value-of select="$raPart5" /></b></center>
+										<center><b><xsl:value-of select="$raPart6" /></b></center>
+									</xsl:when>
+									<xsl:when test="(($raPart10 = '') and ($raPart8 = '') and ($raPart6 != ''))" >
+										<center><b><xsl:value-of select="$raPart1" /></b></center>
+										<center><b><xsl:value-of select="$raPart3" /></b></center>
+										<center><b><xsl:value-of select="$raPart4" /></b></center>
+									</xsl:when>
+									<xsl:when test="(($raPart10 = '') and ($raPart8 = '') and ($raPart6 ='') and ($raPart4 != ''))" >
+										<center><b><xsl:value-of select="$raPart1" /></b></center>
+										<center><b><xsl:value-of select="$raPart2" /></b></center>
+									</xsl:when>
+									<xsl:otherwise>
+										<center><b><xsl:value-of select="notification_data/incoming_request/contact_address" /></b></center>
+									</xsl:otherwise>
+								</xsl:choose>
+							    <br />
+							</td>
+						</tr>
 								</xsl:if>
                                  </table>
                               </xsl:when>
@@ -1549,7 +1519,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
                            <table width="45%">
                               <tr>
                                  <td>
-                                    <font size="1">The copyright law of the United States (Title 17, United States Code), governs the making of photocopies or other reproductions of copyrighted material. Under certain conditions specified in the law, libraries and archives are authorized to furnish a photocopy or other reproduction. One of these specified conditions is that the photocopy or reproduction is not to be "used for any purpose other than private study, scholarship, or research." If a user makes a request for, or later uses, a photocopy or reproduction for purposes in excess of "fair use," that user may be liable for copyright infringement. This institution reserves the right to refuse to accept a copying order, if, in its judgment, fulfillment of the order would involve violation of copyright law.</font>
+                                    <font size="1">This material may be protected by copyright law (Title 17 U.S. Code)</font>
                                  </td>
                               </tr>
                            </table>
