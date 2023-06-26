@@ -39,50 +39,50 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 <xsl:choose>
 	<xsl:when test="notification_data/general_data/letter_type='FulIncomingSlipLetter'">
 		<td>
-			<h1>Resource Sharing</h1>
+			<h3>Resource Sharing</h3>
 		</td>
 	</xsl:when>
 	<xsl:when test="((notification_data/incoming_request/rapido_request='false') and (notification_data/request_type='Ship physically') and not(contains(notification_data/incoming_request/partner_code, '_RAPID')))">
 		<td>
-			<h1>Summit Request</h1>
+			<h3>Summit Request</h3>
 		</td>
 	</xsl:when>
 <!--
 	<xsl:when test="((notification_data/incoming_request/rapido_request='false') and (notification_data/request_type='Ship physically') and (notification_data/incoming_request/partner_code!='VANC_RAPID'))">
 		<td>
-			<h1>Summit Request</h1>
+			<h3>Summit Request</h3>
 		</td>
 	</xsl:when>
 -->
 	<xsl:when test="((notification_data/incoming_request/rapido_request='false') and (notification_data/request_type='Ship physically'))">
 		<td>
-			<h1>Rapid ILL Request</h1>
+			<h3>Rapid ILL Request</h3>
 		</td>
 	</xsl:when>
 	<xsl:when test="((notification_data/incoming_request/rapido_request='true') and (notification_data/request_type='Ship physically'))">
 		<td>
-			<h1>Rapido Request</h1>
+			<h3>Rapido Request</h3>
 		</td>
 	</xsl:when>
 
 	<xsl:when test="((notification_data/general_data/letter_name='Resource Request Slip Letter') and (notification_data/request_type='Patron physical item request'))">
 		<td>
-			<h1>Local Request</h1>
+			<h3>Local Request</h3>
 		</td>
 	</xsl:when>
 	<xsl:when test="((notification_data/general_data/letter_name='Resource Request Slip Letter') and (notification_data/request_type='Patron digitization request'))">
 		<td>
-			<h1>Local Digitization Request</h1>
+			<h3>Local Digitization Request</h3>
 		</td>
 	</xsl:when>
 	<xsl:when test="((notification_data/general_data/letter_name='Resource Request Slip Letter') and (notification_data/request_type='Ship digitally'))">
 		<td>
-			<h1>Resource Sharing Digitization Request</h1>
+			<h3>Resource Sharing Digitization Request</h3>
 		</td>
 	</xsl:when>
 	<xsl:otherwise>
 		<td>
-			<h1><xsl:value-of select="notification_data/general_data/letter_name"/></h1>
+			<h3><xsl:value-of select="notification_data/general_data/letter_name"/></h3>
 		</td>
 	</xsl:otherwise>
 </xsl:choose>
