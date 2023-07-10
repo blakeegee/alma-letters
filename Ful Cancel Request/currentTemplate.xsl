@@ -61,18 +61,14 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
                                                     </xsl:variable>
 
 <br/><br/><strong>Request item through Interlibrary Loan (may take up to two weeks) using one of the following links:</strong>
-<br/><br/>
-                                                   <a href="https://wsu.illiad.oclc.org/illiad/PUL/illiad.dll/OpenURL?Action=10&amp;Form=30&amp;rfr_id=Summit&amp;rft_val_fmt=info:ofi/fmt:key:mtx:book&amp;rft.genre=book&amp;citedin=Summit&amp;rft.btitle={$title}&amp;rft.aulast={$author}&amp;rft.isbn={$isbn}">Pullman Library (includes Global, Everett, and Extension) Patrons</a>
-<br/><br/>
-
-                                                    <a href="https://wsu.illiad.oclc.org/illiad/cal/illiad.dll/OpenURL?Action=10&amp;Form=30&amp;rfr_id=Summit&amp;rft_val_fmt=info:ofi/fmt:key:mtx:book&amp;rft.genre=book&amp;citedin=Summit&amp;rft.btitle={$title}&amp;rft.aulast={$author}&amp;rft.isbn={$isbn}">Spokane Academic Library Patrons </a>
-<br/><br/>
-
-                                                    <a href="http://www.tricity.wsu.edu/Library/ILL_book.php">Tri-Cities Library Patrons </a>                                                    
-<br/><br/>
-
-
-                                                     <a href="https://wsu.illiad.oclc.org/illiad/VAN/illiad.dll/OpenURL?Action=10&amp;Form=30&amp;rfr_id=Summit&amp;rft_val_fmt=info:ofi/fmt:key:mtx:book&amp;rft.genre=book&amp;citedin=Summit&amp;rft.btitle={$title}&amp;rft.aulast={$author}&amp;rft.isbn={$isbn}">Vancouver Library Patrons </a>
+<br/><br/><a href="https://searchit.libraries.wsu.edu/discovery/blankIll?vid=01ALLIANCE_WSU:WSU">Pullman Library (includes Global, Everett, and Extension), Spokane, and Tri-Cities Patrons</a>
+<br/><br/><a href="https://searchit.libraries.wsu.edu/discovery/blankIll?vid=01ALLIANCE_WSU:WSUV">Vancouver Library Patrons</a>
+<!--
+<br/><br/><a href="https://wsu.illiad.oclc.org/illiad/PUL/illiad.dll/OpenURL?Action=10&amp;Form=30&amp;rfr_id=Summit&amp;rft_val_fmt=info:ofi/fmt:key:mtx:book&amp;rft.genre=book&amp;citedin=Summit&amp;rft.btitle={$title}&amp;rft.aulast={$author}&amp;rft.isbn={$isbn}">Pullman Library (includes Global, Everett, and Extension) Patrons</a>
+<br/><br/><a href="https://wsu.illiad.oclc.org/illiad/cal/illiad.dll/OpenURL?Action=10&amp;Form=30&amp;rfr_id=Summit&amp;rft_val_fmt=info:ofi/fmt:key:mtx:book&amp;rft.genre=book&amp;citedin=Summit&amp;rft.btitle={$title}&amp;rft.aulast={$author}&amp;rft.isbn={$isbn}">Spokane Academic Library Patrons </a>
+<br/><br/><a href="http://www.tricity.wsu.edu/Library/ILL_book.php">Tri-Cities Library Patrons </a>                                                
+<br/><br/><a href="https://wsu.illiad.oclc.org/illiad/VAN/illiad.dll/OpenURL?Action=10&amp;Form=30&amp;rfr_id=Summit&amp;rft_val_fmt=info:ofi/fmt:key:mtx:book&amp;rft.genre=book&amp;citedin=Summit&amp;rft.btitle={$title}&amp;rft.aulast={$author}&amp;rft.isbn={$isbn}">Vancouver Library Patrons </a>
+ -->
 
 
  
