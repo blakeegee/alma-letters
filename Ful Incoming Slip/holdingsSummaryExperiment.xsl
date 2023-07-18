@@ -1288,6 +1288,34 @@ Blake's office, Pullman, WA 99163 (2 internal commas)
                                        <br />
                                     </td>
                                  </tr>
+<!--<xsl:value-of select="distinct-values(//RatingValue)"/>-->
+<!--<xsl:variable name="Holdings" select="notification_data/items/physical_item_display_for_printing/summary_holding_infos/summary_holding_info/summary_holding"/>-->
+<!--<xsl:value-of select="distinct-values($Holdings)"/>-->
+<!--<xsl:for-each select="//products/product[not(.=preceding::*)]">-->
+<tr><td>
+<xsl:for-each select="notification_data/items/physical_item_display_for_printing/summary_holding_infos/summary_holding_info/summary_holding[not(.=preceding::*)]">
+<xsl:value-of select="."/><br/>
+</xsl:for-each>
+</td></tr>
+
+<tr><td>
+<xsl:for-each select="notification_data/items/physical_item_display_for_printing/available_items/available_item/location_name[not(.=preceding::*)]">
+<xsl:value-of select="."/><br/>
+</xsl:for-each>
+</td></tr>
+
+<tr><td>
+<xsl:for-each select="notification_data/items/physical_item_display_for_printing/available_items/available_item/call_number[not(.=preceding::*)]">
+<xsl:value-of select="."/><br/>
+</xsl:for-each>
+</td></tr>
+<!--
+<xsl:for-each-group 
+  select="notification_data/items/physical_item_display_for_printing/available_items/available_item/location_name" 
+  group-by="notification_data/items/physical_item_display_for_printing/summary_holding_infos/summary_holding_info/summary_holding">
+</xsl:for-each-group>
+-->
+<!--
 <xsl:variable name="Holding_01" select="notification_data/items/physical_item_display_for_printing[1]/summary_holding_infos/summary_holding_info/summary_holding"/>
 <xsl:variable name="Holding_02" select="notification_data/items/physical_item_display_for_printing[2]/summary_holding_infos/summary_holding_info/summary_holding"/>
 <xsl:variable name="Holding_03" select="notification_data/items/physical_item_display_for_printing[3]/summary_holding_infos/summary_holding_info/summary_holding"/>
@@ -1330,7 +1358,7 @@ Blake's office, Pullman, WA 99163 (2 internal commas)
 <xsl:if test="Holding_18 != $Holding_01"><tr><td><xsl:value-of select="$Holding_18" /></td></tr></xsl:if>
 <xsl:if test="Holding_19 != $Holding_01"><tr><td><xsl:value-of select="$Holding_19" /></td></tr></xsl:if>
 <xsl:if test="$Holding_20 != $Holding_01"><tr><td><xsl:value-of select="$Holding_20" /> | <xsl:value-of select="notification_data/items/physical_item_display_for_printing[20]/available_items/available_item/location_name" /> | <xsl:value-of select="notification_data/items/physical_item_display_for_printing[20]/available_items/available_item/call_number" /></td></tr></xsl:if>
-
+-->
                                  <xsl:if test="notification_data/items/physical_item_display_for_printing/available_items/available_item/call_number">
                                     <tr>
                                        <td>
