@@ -1292,6 +1292,31 @@ Blake's office, Pullman, WA 99163 (2 internal commas)
 <!--<xsl:variable name="Holdings" select="notification_data/items/physical_item_display_for_printing/summary_holding_infos/summary_holding_info/summary_holding"/>-->
 <!--<xsl:value-of select="distinct-values($Holdings)"/>-->
 <!--<xsl:for-each select="//products/product[not(.=preceding::*)]">-->
+
+<tr><td> <b>Multiple holdings, check for correct location:</b><br/><br/>
+<xsl:for-each select="notification_data/items/physical_item_display_for_printing">
+<xsl:sort select="summary_holding_infos/summary_holding_info/summary_holding"/>
+<xsl:variable name="LastHolding" select="summary_holding_infos/summary_holding_info/summary_holding"/>
+<xsl:if test="not(preceding-sibling::physical_item_display_for_printing[summary_holding_infos/summary_holding_info/summary_holding=$LastHolding])">
+
+<xsl:value-of select="summary_holding_infos/summary_holding_info/summary_holding"/> |
+<xsl:value-of select="available_items/available_item/location_name"/> |
+<xsl:value-of select="available_items/available_item/call_number"/><br/>
+
+</xsl:if>
+</xsl:for-each><br/>
+</td></tr>
+
+<!--
+<tr><td>
+<xsl:for-each select="notification_data/items/physical_item_display_for_printing">
+<xsl:value-of select="summary_holding_infos/summary_holding_info/summary_holding[not(.=preceding::*)]"/> 
+<xsl:value-of select="available_items/available_item/location_name[not(.=preceding::*)]"/> 
+<xsl:value-of select="available_items/available_item/call_number[not(.=preceding::*)]"/>
+</xsl:for-each>
+</td></tr>
+-->
+<!--
 <tr><td>
 <xsl:for-each select="notification_data/items/physical_item_display_for_printing/summary_holding_infos/summary_holding_info/summary_holding[not(.=preceding::*)]">
 <xsl:value-of select="."/><br/>
@@ -1309,6 +1334,7 @@ Blake's office, Pullman, WA 99163 (2 internal commas)
 <xsl:value-of select="."/><br/>
 </xsl:for-each>
 </td></tr>
+-->
 <!--
 <xsl:for-each-group 
   select="notification_data/items/physical_item_display_for_printing/available_items/available_item/location_name" 
