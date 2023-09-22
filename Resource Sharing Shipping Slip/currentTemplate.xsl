@@ -49,13 +49,11 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 				<xsl:call-template name="bodyStyleCss" /> <!-- style.xsl -->
 			</xsl:attribute>
 
-				<xsl:call-template name="head" /> <!-- header.xsl -->
-
-
 			<div class="messageArea">
 				<div class="messageBody">
 
-<table cellspacing="0" cellpadding="4" border="0">
+<table cellspacing="0" cellpadding="4" border="0" width="47%">
+				<tr><td><xsl:call-template name="head" /></td></tr> <!-- header.xsl -->
 <!--
 					<tr>
 						<td><strong>Is this a Rapido request? <xsl:value-of select="notification_data/incoming_request/rapido_request"/></strong></td>
@@ -249,7 +247,8 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 -->
 </table>
 <br/>
-			<table role='presentation'  cellspacing="0" cellpadding="5" border="0" width="45%">
+			<table role='presentation'  cellspacing="0" cellpadding="5" border="0" width="47%">
+<--FOR RAPIDO REQUESTS-->
 				<xsl:if test="notification_data/incoming_request/rapido_request='true'" >
 <!--
 					<tr>
@@ -257,9 +256,9 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 					</tr>
 -->
 <!--<p style="page-break-before: always"></p> -->
-					<table cellspacing="0" cellpadding="0" border="1" width="45%">
+					<table cellspacing="0" cellpadding="0" border="1" width="47%">
 						<tr>
-							<td style="font-size:16px;width:500px">
+							<td style="font-size:15px;width:500px">
 								<font size="2">Return To: </font>
 								<br /><br />
 								<center><b><xsl:value-of select="notification_data/item/library_name" /></b></center>
@@ -278,7 +277,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 							</td>
 						</tr>
 						<tr>
-							<td style="font-size:16px;width:500px">
+							<td style="font-size:15px;width:500px">
 							   <font size="2">Ship To:</font>
 							   <br /><br />
 							   <center><b><xsl:value-of select="notification_data/partner_name" /></b></center>
@@ -298,6 +297,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 						</tr>
 					</table>
 				</xsl:if>
+<--FOR RAPID ILL REQUESTS-->
 				<xsl:if test="((notification_data/incoming_request/rapido_request='false') and (contains(notification_data/partner_code, '_RAPID')))" >
 <!--				
 					<tr>
@@ -305,9 +305,9 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 					</tr>
 -->
 <!--<p style="page-break-before: always"></p> -->
-					<table cellspacing="0" cellpadding="0" border="1" width="45%">
+					<table cellspacing="0" cellpadding="0" border="1" width="47%">
 						<tr>
-							<td style="font-size:16px;width:500px">
+							<td style="font-size:15px;width:500px">
 							    <font size="2">Return To: </font>
 							    <br /><br />
 							    <center><b><xsl:value-of select="notification_data/item/library_name" /></b></center>
@@ -326,7 +326,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 							</td>
 						</tr>
 						<tr>
-							<td style="font-size:16px;width:500px">
+							<td style="font-size:15px;width:500px">
 							    <font size="2">Ship To:</font>
 							    <br /><br />
 <!--
@@ -337,6 +337,14 @@ UT Libraries - Interlibrary Services, 101 E 21st STOP S5463, First Floor Dock, A
 Blake's office, 123 Library Lane, Pullman, WA 99163 (3 internal commas)
 Blake's office, Pullman, WA 99163 (2 internal commas)
 -->
+<--FOR RAPID ILL REQUESTS WITH NO ADDRESSES-->
+<xsl:if test="((notification_data/incoming_request/contact_address='') and (notification_data/incoming_request/borrowing_institution='Arizona State University'))" >
+								<center><b>Arizona State University - ILL</b></center>
+							    <center><b>601 E Tyler Mall</b></center>
+							    <center><b>Tempe, AZ 85281</b></center>
+</xsl:if>
+<--FOR RAPID ILL REQUESTS WITH ADDRESSES-->
+<xsl:if test="(notification_data/incoming_request/contact_address!='')" >
 				<xsl:variable name="rapidAddress" select="normalize-space(notification_data/incoming_request/contact_address)"/>
 				<xsl:variable name="raPart1" select="substring-before($rapidAddress, ',')"/>
 				<xsl:variable name="raPart2" select="substring-after($rapidAddress, ',')"/>
@@ -376,10 +384,13 @@ Blake's office, Pullman, WA 99163 (2 internal commas)
 										<center><b><xsl:value-of select="notification_data/incoming_request/contact_address" /></b></center>
 									</xsl:otherwise>
 								</xsl:choose>
+</xsl:if>
 							    <br />
 							</td>
 						</tr>
+
 					</table>
+
 				</xsl:if>
 			</table>
 				</div>
