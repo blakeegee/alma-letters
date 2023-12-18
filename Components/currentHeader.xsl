@@ -70,19 +70,6 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 			<h3>Hybrid Pod Request</h3>
 		</td>
 	</xsl:when>
-<!--
-	<xsl:when test="(notification_data/request_type='Ship physically') and (notification_data/incoming_request/rapido_request='false') and (notification_data/partner_system_type='ALMA') and not(contains(notification_data/incoming_request/partner_code, '01SUNY'))">
-		<td>
-			<h3>Summit Request</h3>
-		</td>
-	</xsl:when>
-
-	<xsl:when test="(notification_data/incoming_request/rapido_request='false') and not(contains(notification_data/incoming_request/partner_code, '_RAPID'))">
-		<td>
-			<h3>Hybrid Pod Request</h3>
-		</td>
-	</xsl:when>
--->
 	<xsl:when test="(notification_data/incoming_request/rapido_request='false') and (contains(notification_data/incoming_request/partner_code, '_RAPID'))">
 		<td>
 			<h3>Rapid ILL Request</h3>
