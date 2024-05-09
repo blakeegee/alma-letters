@@ -1288,103 +1288,16 @@ Blake's office, Pullman, WA 99163 (2 internal commas)
                                        <br />
                                     </td>
                                  </tr>
-<!--<xsl:value-of select="distinct-values(//RatingValue)"/>-->
-<!--<xsl:variable name="Holdings" select="notification_data/items/physical_item_display_for_printing/summary_holding_infos/summary_holding_info/summary_holding"/>-->
-<!--<xsl:value-of select="distinct-values($Holdings)"/>-->
-<!--<xsl:for-each select="//products/product[not(.=preceding::*)]">-->
-
-<tr><td> <b>Multiple holdings, check for correct location:</b><br/><br/>
-<xsl:for-each select="notification_data/items/physical_item_display_for_printing">
-<xsl:sort select="summary_holding_infos/summary_holding_info/summary_holding"/>
-<xsl:variable name="LastHolding" select="summary_holding_infos/summary_holding_info/summary_holding"/>
-<xsl:if test="not(preceding-sibling::physical_item_display_for_printing[summary_holding_infos/summary_holding_info/summary_holding=$LastHolding])">
-
-<xsl:value-of select="summary_holding_infos/summary_holding_info/summary_holding"/> |
-<xsl:value-of select="available_items/available_item/location_name"/> |
-<xsl:value-of select="available_items/available_item/call_number"/><br/>
-
-</xsl:if>
-</xsl:for-each><br/>
+<!--Pulling all unique summary_holding instances, testing if [2] exists, writing all holdings out-->
+<tr><td>​
+    <xsl:variable name="unique-holdings" select="//summary_holding[not(.=preceding::summary_holding)]" />   ​
+    <xsl:if test="count($unique-holdings[2]) = 1">​
+        <b>Alert! Check Alma for correct location and call number:</b><br/>​
+        <xsl:for-each select="$unique-holdings">​
+            <xsl:value-of select="." /><br/>​
+        </xsl:for-each><br/>​
+    </xsl:if>​
 </td></tr>
-
-<!--
-<tr><td>
-<xsl:for-each select="notification_data/items/physical_item_display_for_printing">
-<xsl:value-of select="summary_holding_infos/summary_holding_info/summary_holding[not(.=preceding::*)]"/> 
-<xsl:value-of select="available_items/available_item/location_name[not(.=preceding::*)]"/> 
-<xsl:value-of select="available_items/available_item/call_number[not(.=preceding::*)]"/>
-</xsl:for-each>
-</td></tr>
--->
-<!--
-<tr><td>
-<xsl:for-each select="notification_data/items/physical_item_display_for_printing/summary_holding_infos/summary_holding_info/summary_holding[not(.=preceding::*)]">
-<xsl:value-of select="."/><br/>
-</xsl:for-each>
-</td></tr>
-
-<tr><td>
-<xsl:for-each select="notification_data/items/physical_item_display_for_printing/available_items/available_item/location_name[not(.=preceding::*)]">
-<xsl:value-of select="."/><br/>
-</xsl:for-each>
-</td></tr>
-
-<tr><td>
-<xsl:for-each select="notification_data/items/physical_item_display_for_printing/available_items/available_item/call_number[not(.=preceding::*)]">
-<xsl:value-of select="."/><br/>
-</xsl:for-each>
-</td></tr>
--->
-<!--
-<xsl:for-each-group 
-  select="notification_data/items/physical_item_display_for_printing/available_items/available_item/location_name" 
-  group-by="notification_data/items/physical_item_display_for_printing/summary_holding_infos/summary_holding_info/summary_holding">
-</xsl:for-each-group>
--->
-<!--
-<xsl:variable name="Holding_01" select="notification_data/items/physical_item_display_for_printing[1]/summary_holding_infos/summary_holding_info/summary_holding"/>
-<xsl:variable name="Holding_02" select="notification_data/items/physical_item_display_for_printing[2]/summary_holding_infos/summary_holding_info/summary_holding"/>
-<xsl:variable name="Holding_03" select="notification_data/items/physical_item_display_for_printing[3]/summary_holding_infos/summary_holding_info/summary_holding"/>
-<xsl:variable name="Holding_04" select="notification_data/items/physical_item_display_for_printing[4]/summary_holding_infos/summary_holding_info/summary_holding"/>
-<xsl:variable name="Holding_05" select="notification_data/items/physical_item_display_for_printing[5]/summary_holding_infos/summary_holding_info/summary_holding"/>
-<xsl:variable name="Holding_06" select="notification_data/items/physical_item_display_for_printing[6]/summary_holding_infos/summary_holding_info/summary_holding"/>
-<xsl:variable name="Holding_07" select="notification_data/items/physical_item_display_for_printing[7]/summary_holding_infos/summary_holding_info/summary_holding"/>
-<xsl:variable name="Holding_08" select="notification_data/items/physical_item_display_for_printing[8]/summary_holding_infos/summary_holding_info/summary_holding"/>
-<xsl:variable name="Holding_09" select="notification_data/items/physical_item_display_for_printing[9]/summary_holding_infos/summary_holding_info/summary_holding"/>
-<xsl:variable name="Holding_10" select="notification_data/items/physical_item_display_for_printing[10]/summary_holding_infos/summary_holding_info/summary_holding"/>
-<xsl:variable name="Holding_11" select="notification_data/items/physical_item_display_for_printing[11]/summary_holding_infos/summary_holding_info/summary_holding"/>
-<xsl:variable name="Holding_12" select="notification_data/items/physical_item_display_for_printing[12]/summary_holding_infos/summary_holding_info/summary_holding"/>
-<xsl:variable name="Holding_13" select="notification_data/items/physical_item_display_for_printing[13]/summary_holding_infos/summary_holding_info/summary_holding"/>
-<xsl:variable name="Holding_14" select="notification_data/items/physical_item_display_for_printing[14]/summary_holding_infos/summary_holding_info/summary_holding"/>
-<xsl:variable name="Holding_15" select="notification_data/items/physical_item_display_for_printing[15]/summary_holding_infos/summary_holding_info/summary_holding"/>
-<xsl:variable name="Holding_16" select="notification_data/items/physical_item_display_for_printing[16]/summary_holding_infos/summary_holding_info/summary_holding"/>
-<xsl:variable name="Holding_17" select="notification_data/items/physical_item_display_for_printing[17]/summary_holding_infos/summary_holding_info/summary_holding"/>
-<xsl:variable name="Holding_18" select="notification_data/items/physical_item_display_for_printing[18]/summary_holding_infos/summary_holding_info/summary_holding"/>
-<xsl:variable name="Holding_19" select="notification_data/items/physical_item_display_for_printing[19]/summary_holding_infos/summary_holding_info/summary_holding"/>
-<xsl:variable name="Holding_20" select="notification_data/items/physical_item_display_for_printing[20]/summary_holding_infos/summary_holding_info/summary_holding"/>
-
-<tr><td><xsl:value-of select="$Holding_01" /> | <xsl:value-of select="notification_data/items/physical_item_display_for_printing[1]/available_items/available_item/location_name" /> | <xsl:value-of select="notification_data/items/physical_item_display_for_printing[1]/available_items/available_item/call_number" /></td></tr>
-
-<xsl:if test="Holding_02 != $Holding_01"><tr><td><xsl:value-of select="$Holding_02" /> | <xsl:value-of select="notification_data/items/physical_item_display_for_printing[2]/available_items/available_item/location_name" /> | <xsl:value-of select="notification_data/items/physical_item_display_for_printing[2]/available_items/available_item/call_number" /></td></tr></xsl:if>
-<xsl:if test="Holding_03 != $Holding_01"><tr><td><xsl:value-of select="$Holding_03" /></td></tr></xsl:if>
-<xsl:if test="Holding_04 != $Holding_01"><tr><td><xsl:value-of select="$Holding_04" /></td></tr></xsl:if>
-<xsl:if test="Holding_05 != $Holding_01"><tr><td><xsl:value-of select="$Holding_05" /></td></tr></xsl:if>
-<xsl:if test="Holding_06 != $Holding_01"><tr><td><xsl:value-of select="$Holding_06" /></td></tr></xsl:if>
-<xsl:if test="Holding_07 != $Holding_01"><tr><td><xsl:value-of select="$Holding_07" /></td></tr></xsl:if>
-<xsl:if test="Holding_08 != $Holding_01"><tr><td><xsl:value-of select="$Holding_08" /></td></tr></xsl:if>
-<xsl:if test="Holding_09 != $Holding_01"><tr><td><xsl:value-of select="$Holding_09" /></td></tr></xsl:if>
-<xsl:if test="Holding_10 != $Holding_01"><tr><td><xsl:value-of select="$Holding_10" /></td></tr></xsl:if>
-<xsl:if test="Holding_11 != $Holding_01"><tr><td><xsl:value-of select="$Holding_11" /></td></tr></xsl:if>
-<xsl:if test="Holding_12 != $Holding_01"><tr><td><xsl:value-of select="$Holding_12" /></td></tr></xsl:if>
-<xsl:if test="Holding_13 != $Holding_01"><tr><td><xsl:value-of select="$Holding_13" /></td></tr></xsl:if>
-<xsl:if test="Holding_14 != $Holding_01"><tr><td><xsl:value-of select="$Holding_14" /></td></tr></xsl:if>
-<xsl:if test="Holding_15 != $Holding_01"><tr><td><xsl:value-of select="$Holding_15" /></td></tr></xsl:if>
-<xsl:if test="Holding_16 != $Holding_01"><tr><td><xsl:value-of select="$Holding_16" /></td></tr></xsl:if>
-<xsl:if test="Holding_17 != $Holding_01"><tr><td><xsl:value-of select="$Holding_17" /></td></tr></xsl:if>
-<xsl:if test="Holding_18 != $Holding_01"><tr><td><xsl:value-of select="$Holding_18" /></td></tr></xsl:if>
-<xsl:if test="Holding_19 != $Holding_01"><tr><td><xsl:value-of select="$Holding_19" /></td></tr></xsl:if>
-<xsl:if test="$Holding_20 != $Holding_01"><tr><td><xsl:value-of select="$Holding_20" /> | <xsl:value-of select="notification_data/items/physical_item_display_for_printing[20]/available_items/available_item/location_name" /> | <xsl:value-of select="notification_data/items/physical_item_display_for_printing[20]/available_items/available_item/call_number" /></td></tr></xsl:if>
--->
                                  <xsl:if test="notification_data/items/physical_item_display_for_printing/available_items/available_item/call_number">
                                     <tr>
                                        <td>
