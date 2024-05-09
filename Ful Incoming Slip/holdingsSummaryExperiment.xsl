@@ -1288,15 +1288,16 @@ Blake's office, Pullman, WA 99163 (2 internal commas)
                                        <br />
                                     </td>
                                  </tr>
-<!--Pulling all unique summary_holding instances, testing if [2] exists, writing all holdings out-->
-<tr><td>​
-    <xsl:variable name="unique-holdings" select="//summary_holding[not(.=preceding::summary_holding)]" />   ​
-    <xsl:if test="count($unique-holdings[2]) = 1">​
-        <b>Alert! Check Alma for correct location and call number:</b><br/>​
-        <xsl:for-each select="$unique-holdings">​
-            <xsl:value-of select="." /><br/>​
-        </xsl:for-each><br/>​
-    </xsl:if>​
+<!--Pulling all unique summary_holding instances as $unique-holdings, pulling all unique summary_holding/call_number/location_name instances as $unique-statement, testing if $unique-holdings[2] exists, writing all $unique-statement out-->
+<tr><td>
+	<xsl:variable name="unique-holdings" select="//summary_holding[not(.=preceding::summary_holding)]"/>
+	<xsl:variable name="unique-statement" select="//summary_holding[not(.=preceding::summary_holding)] | //call_number[not(.=preceding::call_number)] | //location_name[not(.=preceding::location_name)]" />   
+	<xsl:if test="count($unique-holdings[2]) = 1">
+		<b>Alert! Check for correct location and call number:</b><br/>
+		<xsl:for-each select="$unique-statement">
+			<xsl:value-of select="." /><br/>
+		</xsl:for-each><br/>
+	</xsl:if>
 </td></tr>
                                  <xsl:if test="notification_data/items/physical_item_display_for_printing/available_items/available_item/call_number">
                                     <tr>
