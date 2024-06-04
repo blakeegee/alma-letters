@@ -597,7 +597,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
                                  </td>
                               </tr>
                               <tr>
-                                 <td>
+                                 <td style="border: 1px solid black;">
                                     <b>@@call_number@@:&#160;</b>
                                     <font color="black">
                                        <xsl:value-of select="notification_data/items/physical_item_display_for_printing/available_items/available_item/call_number" />
@@ -1288,9 +1288,19 @@ Blake's office, Pullman, WA 99163 (2 internal commas)
                                        <br />
                                     </td>
                                  </tr>
+<tr><td>
+	<xsl:variable name="unique-holdings" select="//summary_holding[not(.=preceding::summary_holding)]"/>
+	<xsl:variable name="unique-statement" select="//summary_holding[not(.=preceding::summary_holding)] | //call_number[not(.=preceding::call_number)] | //location_name[not(.=preceding::location_name)]" />   
+	<xsl:if test="count($unique-holdings[2]) = 1">
+		<b>Alert! Check for correct location and call number:</b><br/>
+		<xsl:for-each select="$unique-statement">
+			<xsl:value-of select="." /><br/>
+		</xsl:for-each><br/>
+	</xsl:if>
+</td></tr>
                                  <xsl:if test="notification_data/items/physical_item_display_for_printing/available_items/available_item/call_number">
                                     <tr>
-                                       <td>
+                                       <td style="border: 1px solid black;">
                                           <b>@@call_number@@:&#160;</b>
                                           <xsl:text />
                                           <font color="black">
@@ -1370,7 +1380,7 @@ Blake's office, Pullman, WA 99163 (2 internal commas)
                                     </td>
                                  </tr>
                                  <tr>
-                                    <td>
+                                    <td style="border: 1px solid black;">
                                        <b>@@call_number@@:&#160;</b>
                                        <xsl:text />
                                        <font color="black">
