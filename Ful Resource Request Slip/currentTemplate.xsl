@@ -108,7 +108,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 						<xsl:if test="notification_data/incoming_request/partner_name='PCC'">
 							<tr><td><h2><strong>Ship To: PCC - Portland Community College</strong></h2></td></tr>
 						</xsl:if>		
-						<xsl:if test="notification_data/incoming_request/partner_name='PSU'">
+						<xsl:if test="notification_data/incoming_request/partner_name='PSU' or notification_data/incoming_request/partner_name='Portland State University - PSU Library' or notification_data/incoming_request/partner_name='Portland State University - PSU Library (Community)'">
 							<tr><td><h2><strong>Ship To: PSU - Portland State University</strong></h2></td></tr>
 						</xsl:if>	
 						<xsl:if test="$libraryname='Eugene' or $libraryname='Forest Grove' or $libraryname='Woodburn'">
