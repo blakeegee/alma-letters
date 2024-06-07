@@ -34,12 +34,12 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 				<xsl:variable name="fullname" select="substring-before($notepart1, '||')"/>
 				<xsl:variable name="notepart2" select="substring-after($notepart1, '||')"/>
 				<xsl:variable name="libraryname" select="substring-after($notepart2, '||')"/>
-				<tr>
-					<td><h3><strong><xsl:value-of select="$fullname"/></strong></h3></td>
-				</tr>
-				<tr>
-					<td><h3><strong>Pickup at: <xsl:value-of select="$libraryname"/></strong></h3></td>
-				</tr>
+					<xsl:if test="$fullname != ''" >
+						<tr><td><h3><strong><xsl:value-of select="$fullname"/></strong></h3></td></tr>
+					</xsl:if>
+					<xsl:if test="$libraryname != ''" >
+						<tr><td><h3><strong>Pickup at: <xsl:value-of select="$libraryname"/></strong></h3></td></tr>
+					</xsl:if>			
 				</xsl:if>			
 				<xsl:choose>
 					<xsl:when test="notification_data/incoming_request/partner_name='CC'">
@@ -549,53 +549,21 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 							<td style="font-size:16px;width:500px">
 							    <font size="2">Ship To:</font>
 							    <br /><br />
-<!--
-Examples of contact_address strings
-
-Interlibrary Loan &amp; Library Express, Zimmerman Library, University of New Mexico, 1900 Roma Ave NE, Albuquerque, NM 87131-0001 , (5 internal commas)
-UT Libraries - Interlibrary Services, 101 E 21st STOP S5463, First Floor Dock, Austin, TX 78712-1492 (4 internal commas)
-Blake's office, 123 Library Lane, Pullman, WA 99163 (3 internal commas)
-Blake's office, Pullman, WA 99163 (2 internal commas)
--->
-				<xsl:variable name="rapidAddress" select="normalize-space(notification_data/incoming_request/contact_address)"/>
-				<xsl:variable name="raPart1" select="substring-before($rapidAddress, ',')"/>
-				<xsl:variable name="raPart2" select="substring-after($rapidAddress, ',')"/>
-				<xsl:variable name="raPart3" select="substring-before($raPart2, ',')"/>
-				<xsl:variable name="raPart4" select="substring-after($raPart2, ',')"/>
-				<xsl:variable name="raPart5" select="substring-before($raPart4, ',')"/>
-				<xsl:variable name="raPart6" select="substring-after($raPart4, ',')"/>
-				<xsl:variable name="raPart7" select="substring-before($raPart6, ',')"/>
-				<xsl:variable name="raPart8" select="substring-after($raPart6, ',')"/>
-				<xsl:variable name="raPart9" select="substring-before($raPart8, ',')"/>
-				<xsl:variable name="raPart10" select="substring-after($raPart8, ',')"/>
-							    <center><b><xsl:value-of select="notification_data/partner_name" /></b></center>
-								<xsl:choose>
-									<xsl:when test="($raPart10 != '')" >
-										<center><b><xsl:value-of select="$raPart1" /></b></center>
-										<center><b><xsl:value-of select="$raPart3" /></b></center>
-										<center><b><xsl:value-of select="$raPart5" /></b></center>
-										<center><b><xsl:value-of select="$raPart7" /></b></center>
-										<center><b><xsl:value-of select="$raPart8" /></b></center>
-									</xsl:when>
-									<xsl:when test="(($raPart10 = '') and ($raPart8 != ''))" >
-										<center><b><xsl:value-of select="$raPart1" /></b></center>
-										<center><b><xsl:value-of select="$raPart3" /></b></center>
-										<center><b><xsl:value-of select="$raPart5" /></b></center>
-										<center><b><xsl:value-of select="$raPart6" /></b></center>
-									</xsl:when>
-									<xsl:when test="(($raPart10 = '') and ($raPart8 = '') and ($raPart6 != ''))" >
-										<center><b><xsl:value-of select="$raPart1" /></b></center>
-										<center><b><xsl:value-of select="$raPart3" /></b></center>
-										<center><b><xsl:value-of select="$raPart4" /></b></center>
-									</xsl:when>
-									<xsl:when test="(($raPart10 = '') and ($raPart8 = '') and ($raPart6 ='') and ($raPart4 != ''))" >
-										<center><b><xsl:value-of select="$raPart1" /></b></center>
-										<center><b><xsl:value-of select="$raPart2" /></b></center>
-									</xsl:when>
-									<xsl:otherwise>
-										<center><b><xsl:value-of select="notification_data/incoming_request/contact_address" /></b></center>
-									</xsl:otherwise>
-								</xsl:choose>
+							   <center><b><xsl:value-of select="notification_data/partner_name" /></b></center>
+							   <center><b><xsl:value-of select="notification_data/partner_shipping_info_list/partner_shipping_info/address1" /></b></center>
+							   <center><b><xsl:value-of select="notification_data/partner_shipping_info_list/partner_shipping_info/address2" /></b></center>
+							   <center><b><xsl:value-of select="notification_data/partner_shipping_info_list/partner_shipping_info/address3" /></b></center>
+							   <center><b><xsl:value-of select="notification_data/partner_shipping_info_list/partner_shipping_info/address4" /></b></center>
+							   <center><b><xsl:value-of select="notification_data/partner_shipping_info_list/partner_shipping_info/address5" /></b></center>
+							   <xsl:if test="notification_data/partner_shipping_info_list/partner_shipping_info/city != ''" >
+								   <center><b>
+										 <xsl:value-of select="notification_data/partner_shipping_info_list/partner_shipping_info/city" />
+										 <xsl:text>, </xsl:text>
+										 <xsl:value-of select="notification_data/partner_shipping_info_list/partner_shipping_info/state" />
+										 <xsl:text> </xsl:text>
+										 <xsl:value-of select="notification_data/partner_shipping_info_list/partner_shipping_info/postal_code" />
+									</b></center>
+								</xsl:if>	 
 							    <br />
 							</td>
 						</tr>
