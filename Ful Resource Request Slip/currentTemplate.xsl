@@ -196,7 +196,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 						<xsl:if test="$libraryname='PNCA'">
 							<tr><td><h2><strong>Ship To: PNCA - PNW College of Art/Willamette University</strong></h2></td></tr>
 						</xsl:if>	
-						<xsl:if test="notification_data/incoming_request/partner_name='WWO'">
+						<xsl:if test="notification_data/incoming_request/partner_name='WW'">
 							<tr><td><h2><strong>Ship To: WWORTH - Whitworth University</strong></h2></td></tr>
 						</xsl:if>	
 						<xsl:if test="notification_data/incoming_request/partner_name='WWU'">
