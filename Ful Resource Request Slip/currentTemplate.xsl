@@ -17,17 +17,26 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 			</xsl:if>
 		<head>
 				<title>
-					<xsl:value-of select="notification_data/general_data/subject"/>
+					<xsl:value-of select="notiftiication_data/general_data/subject"/>
 				</title>
-
 			<xsl:call-template name="generalStyle" />
 		</head>
 		<body>
 			<table role='presentation'  cellspacing="0" cellpadding="5" border="0" width="45%">
 				<xsl:if test="notification_data/user_for_printing/name != ''" >
 					<h2><strong><xsl:value-of select="notification_data/user_for_printing/name"/></strong></h2>
-					<h2><strong>@@move_to_library@@: </strong><xsl:value-of select="notification_data/destination"/></h2>
+						<xsl:choose>
+<!--Change Ship To: name for Spokane-->
+						<xsl:when test="notification_data/destination = 'WSU Health Sciences Library'" >
+							<tr><td><h3><strong>Ship To: WSU-SPOK - Washington State University Spokane</strong></h3></td></tr>
+							<tr><td><h3><strong>Pickup Location: </strong><xsl:value-of select="notification_data/destination"/></h3></td></tr>
+						</xsl:when>
+						<xsl:otherwise>
+							<tr><td><h3><strong>@@move_to_library@@: </strong><xsl:value-of select="notification_data/destination"/></h3></td></tr>
+						</xsl:otherwise>
+						</xsl:choose>
 				</xsl:if>
+<!--Parse Incoming_Request/Note-->
 				<xsl:if test="notification_data/incoming_request/note != ''" >
 				<xsl:variable name="noteline" select="notification_data/incoming_request/note"/>
 				<xsl:variable name="notepart1" select="substring-after($noteline, '||')"/>
@@ -37,8 +46,8 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 					<xsl:if test="$fullname != ''" >
 						<tr><td><h2><strong><xsl:value-of select="$fullname"/></strong></h2></td></tr>
 					</xsl:if>
+<!--If Incoming_Request/Note contains Summit variable $libraryname, use Incoming_Request/Partner_Name in Ship To:-->
 					<xsl:if test="$libraryname != ''" >
-	
 						<xsl:if test="notification_data/incoming_request/partner_name='CC'">
 							<tr><td><h2><strong>Ship To: CLARK - Clark College</strong></h2></td></tr>
 						</xsl:if>
@@ -202,12 +211,16 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 						<xsl:if test="notification_data/incoming_request/partner_name='WWU'">
 							<tr><td><h2><strong>Ship To: WWU - Western Washington University</strong></h2></td></tr>
 						</xsl:if>
+<!--If Incoming_Request/Note contains Summit variable $libraryname, use that in Pickup Location:-->
 						<tr><td><h2><strong>Pickup Location: <xsl:value-of select="$libraryname"/></strong></h2></td></tr>
 					</xsl:if>
+<!--If there is an Incoming_Request/Note, but it contains no Summit variable $libraryname, use Notification_Data/Partner_Name-->
+<!--This was added to account for schools like UWisconsin, who add notes to every letter, which was conflicting with Summit use of same note-->
 					<xsl:if test="$libraryname = ''" >
 						<tr><td><h2><strong><xsl:value-of select="notification_data/partner_name"/></strong></h2></td></tr>
 					</xsl:if>					
 				</xsl:if>
+<!--If there is no Incoming_Request/Note, use Notification_Data/Partner_Name-->
 			<xsl:if test="notification_data/incoming_request/note = ''" >
 				<tr><td><h2><strong><xsl:value-of select="notification_data/partner_name"/></strong></h2></td></tr>
 			</xsl:if>
@@ -361,13 +374,72 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 						<td><strong>@@system_notes@@:</strong><xsl:value-of select="notification_data/request/system_notes"/></td>
 					</tr>
 				</xsl:if>
+<!--For RS Digitization requests going through the default digitization department-->
+				<xsl:if test="(notification_data/request/note != '') and (notification_data/request_type='Ship digitally')" >
 <!--
-				<xsl:if test="notification_data/request/note != ''" >
 					<tr>
 						<td><strong>@@request_note@@:</strong> <xsl:value-of select="notification_data/request/note"/></td>
 					</tr>
-				</xsl:if>
 -->
+					<xsl:variable name="request_metadata_string" select="notification_data/incoming_request/request_metadata"/>
+
+					<xsl:variable name="title_string" select="substring-after($request_metadata_string, 'dc:title&gt;')"/>
+					<xsl:variable name="title" select="substring-before($title_string, '&lt;/dc:title')"/>
+
+					<xsl:variable name="chapterTitle_string" select="substring-after($request_metadata_string, 'dc:rlterms_chapter_title&gt;')"/>
+					<xsl:variable name="chapterTitle" select="substring-before($chapterTitle_string, '&lt;/dc:rlterms_chapter_title')"/>
+
+					<xsl:variable name="chapterNumber_string" select="substring-after($request_metadata_string, 'dc:rlterms_chapter&gt;')"/>
+					<xsl:variable name="chapterNumber" select="substring-before($chapterNumber_string, '&lt;/dc:rlterms_chapter')"/>
+
+					<xsl:variable name="author_string" select="substring-after($request_metadata_string, 'dc:creator&gt;')"/>
+					<xsl:variable name="author" select="substring-before($author_string, '&lt;/dc:creator')"/>
+
+					<xsl:variable name="date_string" select="substring-after($request_metadata_string, 'dc:date&gt;')"/>
+					<xsl:variable name="date" select="substring-before($date_string, '&lt;/dc:date')"/>
+
+					<xsl:variable name="volume_string" select="substring-after($request_metadata_string, 'dc:rlterms_volumePartNumber&gt;')"/>
+					<xsl:variable name="volume" select="substring-before($volume_string, '&lt;/dc:rlterms_volumePartNumber')"/>
+
+					<xsl:variable name="pages_string" select="substring-after($request_metadata_string, 'dc:rlterms_pages&gt;')"/>
+					<xsl:variable name="pages" select="substring-before($pages_string, '&lt;/dc:rlterms_pages')"/>
+                        <xsl:if test="$title != ''" >
+						<tr>
+							<td><strong>Article/Book Title: </strong> <xsl:value-of select="$title"/></td>
+						</tr>
+						</xsl:if>
+						<xsl:if test="$chapterTitle != ''" >
+						<tr>
+							<td><strong>Chapter Title: </strong> <xsl:value-of select="$chapterTitle"/></td>
+						</tr>
+						</xsl:if>
+						<xsl:if test="$chapterNumber != ''" >
+						<tr>
+							<td><strong>Chapter Number: </strong> <xsl:value-of select="$chapterNumber"/></td>
+						</tr>
+						</xsl:if>
+						<xsl:if test="$author != ''" >
+						<tr>
+							<td><strong>Author: </strong> <xsl:value-of select="$author"/></td>
+						</tr>
+						</xsl:if>
+						<xsl:if test="$date != ''" >
+						<tr>
+							<td><strong>Year: </strong> <xsl:value-of select="$date"/></td>
+						</tr>
+						</xsl:if>
+						<xsl:if test="$volume != ''" >
+						<tr>
+							<td><strong>Volume: </strong> <xsl:value-of select="$volume"/></td>
+						</tr>
+						</xsl:if>
+						<xsl:if test="$pages != ''" >
+						<tr>
+							<td><strong>Pages: </strong> <xsl:value-of select="$pages"/></td>
+						</tr>
+						</xsl:if>
+				</xsl:if>
+
 				<xsl:if test="notification_data/incoming_request/note != ''" >
 					<tr>
 						<td><strong>Request note: </strong> <xsl:value-of select="notification_data/incoming_request/note"/></td>
