@@ -1487,6 +1487,20 @@ Blake's office, Pullman, WA 99163 (2 internal commas)
                                     </td>
                                  </tr>
                                  <xsl:if test="(notification_data/incoming_request/format='DIGITAL')">
+<tr><td>
+<!--    <xsl:variable name="unique-library" select="//physical_item_display_for_printing[not(.=preceding::physical_item_display_for_printing)]"/> -->
+	<xsl:variable name="unique-libcode" select="//physical_item_display_for_printing/available_items/available_item/library_code[not(.=preceding::physical_item_display_for_printing/available_items/available_item/library_code)]" />
+	<xsl:variable name="unique-libname" select="//physical_item_display_for_printing/available_items/available_item/library_name[not(.=preceding::physical_item_display_for_printing/available_items/available_item/library_name)]" />
+        <xsl:if test="count($unique-libcode[2]) = 1">
+<!--	    <xsl:if test="($unique-libcode[1] = 'hollterr') and (($unique-libcode[2] = 'rpoint') or ($unique-libcode[2] = 'tricities') or ($unique-libcode[2] = 'vancouver'))"> -->
+<!--	        <xsl:if test="($unique-libcode[1] = 'hollterr') and not($unique-libcode[2] = 'hollterr')"> -->
+		        <b>Alert! Check to see if this request has already been filled by:</b><br/>
+		        <xsl:for-each select="$unique-libname">
+			        <xsl:value-of select="." /><br/>
+		        </xsl:for-each><br/>
+<!--	        </xsl:if> -->
+	    </xsl:if>
+</td></tr>
                                     <tr>
                                        <td style="font-size:20px">
                                           <font color="black">
