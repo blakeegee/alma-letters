@@ -47,9 +47,34 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<tr>
 <xsl:choose>
 <!--RS Sharing Module-->
-	<xsl:when test="notification_data/general_data/letter_type='FulIncomingSlipLetter'">
+	<xsl:when test="(notification_data/general_data/letter_type='FulIncomingSlipLetter') and (notification_data/incoming_request/rapido_request='false') and (notification_data/partner_system_type='ALMA')">
 		<td>
-			<h3>Resource Sharing</h3>
+			<h3>Summit Request</h3>
+		</td>
+	</xsl:when>
+	<xsl:when test="(notification_data/general_data/letter_type='FulIncomingSlipLetter') and (notification_data/incoming_request/rapido_request='true') and (notification_data/pod_name='OrCa')">
+		<td>
+			<h3>Summit Request</h3>
+		</td>
+	</xsl:when>
+	<xsl:when test="(notification_data/general_data/letter_type='FulIncomingSlipLetter') and (notification_data/incoming_request/rapido_request='true') and (notification_data/partner_system_type='RAPID')">
+		<td>
+			<h3>RapidILL Request</h3>
+		</td>
+	</xsl:when>
+	<xsl:when test="(notification_data/general_data/letter_type='FulIncomingSlipLetter') and (notification_data/incoming_request/rapido_request='true') and (notification_data/pod_name!='')">
+		<td>
+			<h3>Rapido Request</h3>
+		</td>
+	</xsl:when>
+	<xsl:when test="(notification_data/general_data/letter_type='FulIncomingSlipLetter') and (notification_data/incoming_request/rapido_request='false') and (notification_data/partner_system_type='RAPID')">
+		<td>
+			<h3>Rapid Returnable Request</h3>
+		</td>
+	</xsl:when>
+	<xsl:when test="(notification_data/general_data/letter_type='FulIncomingSlipLetter') and (notification_data/incoming_request/rapido_request='true') and (notification_data/partner_system_type='NGRS')">
+		<td>
+			<h3>Local Digitization Request</h3>
 		</td>
 	</xsl:when>
 <!--Pick From Shelf-->
