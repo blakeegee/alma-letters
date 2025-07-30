@@ -138,7 +138,8 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 						</tr>
 
 					</xsl:for-each>
-				</xsl:if>	
+				</xsl:if>
+				<tr><td><br/><p>Notice of Copyright:</p><p>Washington State Libraries follow and protect the Copyright Law of the United States (Title 17, US Code), specifically governing copies of any copyrighted material.  Persons requesting copies are liable for any infringement.</p></td></tr>
 				<tr>
 					<td>@@sincerely@@<br />@@department@@</td>
 				</tr>
