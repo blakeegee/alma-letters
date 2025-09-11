@@ -3,7 +3,6 @@
 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 <xsl:variable name="counter" select="0"/>
 
-
 <xsl:include href="header.xsl" />
 <xsl:include href="senderReceiver.xsl" />
 <xsl:include href="mailReason.xsl" />
@@ -54,29 +53,21 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 			<div class="messageArea">
 				<div class="messageBody">
 					 <table cellspacing="0" cellpadding="5" border="0">
-
-
 						<tr>
 							<td>
 								<b>@@supplied_to@@: </b>
 								<xsl:value-of select="notification_data/partner_name"/>
 							</td>
 						</tr>
-
-
 						<tr>
 			                <td>
 			                  <b>@@borrower_reference@@: </b>
 			                   <xsl:call-template name="id-info-hdr"/>
 			                </td>
 			              </tr>
-
-
-
 			          <tr>
 							  <td><b>@@my_id@@: </b><img src="externalId.png" alt="externalId" /></td>
 				      </tr>
-
 						<tr>
 							<td>
 								<b>@@format@@: </b>
@@ -172,19 +163,9 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 					</table>
 				</div>
 			</div>
-
-
-
-
 	<xsl:call-template name="lastFooter" /> <!-- footer.xsl -->
-
-
-
-
-
 </body>
 </html>
-
 <!--Insert Between </html> and </xsl:template>-->		
  
          </xsl:when>
@@ -204,8 +185,6 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
                   <div class="messageBody">
                      <table width="45%">
 
-
-
    <xsl:if test="notification_data/partner_name != ''" >
           <xsl:variable name="noteline" select="notification_data/incoming_request/note"/>
           <xsl:variable name="notepart1" select="substring-after($noteline, '||')"/>
@@ -215,42 +194,6 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
          <tr>
                 <td><h3><strong><xsl:value-of select="$fullname"/></strong></h3></td>
         </tr>
-
-<!--
-<xsl:choose>
-<xsl:when test="notification_data/partner_code='PULL_RAPID'">
-                <td><h3><strong>Pickup at: PULLMAN RAPID ILL</strong></h3></td>
-</xsl:when>
-<xsl:when test="notification_data/partner_code='SPOK_RAPID'">
-                <td><h3><strong>Pickup at: SPOKANE RAPID ILL</strong></h3></td>
-</xsl:when>
-<xsl:when test="notification_data/partner_code='TRIC_RAPID'">
-                <td><h3><strong>Pickup at: TRICITIES RAPID ILL</strong></h3></td>
-</xsl:when>
-<xsl:when test="notification_data/partner_code='VANC_RAPID'">
-                <td><h3><strong>Pickup at: VANCOUVER RAPID ILL</strong></h3></td>
-</xsl:when>
-<xsl:when test="(notification_data/items/physical_item_display_for_printing/library_code='hollterr') and (notification_data/incoming_request/format='PHYSICAL') and (notification_data/incoming_request/rapido_request='true') and (notification_data/partner_system_type!='ALMA')">
-               <td><h3><strong>Pickup at: PULLMAN RAPIDO</strong></h3></td>
-</xsl:when>
-<xsl:when test="(notification_data/items/physical_item_display_for_printing/library_code='rpoint') and (notification_data/incoming_request/format='PHYSICAL') and (notification_data/incoming_request/rapido_request='true') and (notification_data/partner_system_type!='ALMA')">
-               <td><h3><strong>Pickup at: SPOKANE RAPIDO</strong></h3></td>
-</xsl:when>
-<xsl:when test="(notification_data/items/physical_item_display_for_printing/library_code='tricities') and (notification_data/incoming_request/format='PHYSICAL') and (notification_data/incoming_request/rapido_request='true') and (notification_data/partner_system_type!='ALMA')">
-               <td><h3><strong>Pickup at: TRI-CITIES RAPIDO</strong></h3></td>
-</xsl:when>
-<xsl:when test="(notification_data/items/physical_item_display_for_printing/library_code='vancouver') and (notification_data/incoming_request/format='PHYSICAL') and (notification_data/incoming_request/rapido_request='true') and (notification_data/partner_system_type!='ALMA')">
-               <td><h3><strong>Pickup at: VANCOUVER RAPIDO</strong></h3></td>
-</xsl:when>
-<xsl:otherwise>
-                <td><h3><strong>Pickup at: <xsl:value-of select="$libraryname"/></strong></h3></td>
-
-</xsl:otherwise>
-</xsl:choose>
--->
-
-
-
       			   <xsl:if test="$libraryname != ''" >
 		<tr>
                    <td><h2><strong>Pickup Location: <xsl:value-of select="$libraryname"/></strong></h2></td>
@@ -429,7 +372,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 			<xsl:when test="notification_data/partner_name='WWU'">
 				<tr><td><h2><strong>Ship To: WWU - Western Washington University</strong></h2></td></tr>
 			</xsl:when>	
-			<!--this phrase says if none of the above tests are triggered, print the partner code from the XML in the Ship To: line -->
+<!--This says if none of the above tests are triggered, print the partner code from the XML in the Ship To: line -->
 			<xsl:otherwise>
 				<tr><td><h2><strong>Ship To: <xsl:value-of select="notification_data/partner_name"/></strong></h2></td></tr>
 			</xsl:otherwise>
@@ -452,28 +395,6 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
                      </tr>
                      <table width="45%">
 					 <tr><td><xsl:call-template name="head" /> <!-- header.xsl --></td></tr>
-<!--
-                        <xsl:choose>
-                           <xsl:when test="not(notification_data/pod_name='California State Network')">
-                              <tr>
-                                 <td>
-                                    <center>
-                                       <img src="ADD THE URL FOR YOUR LOGO HERE" alt="Lending Library Logo" />
-                                    </center>
-                                 </td>
-                              </tr>
-                           </xsl:when>
-                           <xsl:otherwise>
-                              <tr>
-                                 <td>
-                                    <center>
-                                       <img src="https://ispiecsu.files.wordpress.com/2023/03/csu-plus-small.png" alt="CSU Plus Logo" />
-                                    </center>
-                                 </td>
-                              </tr>
-                           </xsl:otherwise>
-                        </xsl:choose>
--->
                      </table>
                      <table role="presentation" cellspacing="0" cellpadding="5" border="0">
                         <!--Book-->
@@ -557,61 +478,6 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
                                  <br />
                               </td>
                            </tr>
-<!--
-                           <xsl:if test="notification_data/incoming_request/rapido_allow_renew= 'false'">
-                              <tr>
-                                 <td style="font-size:20px">
-                                    <font color="black">NO RENEWALS</font>
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <td>
-                                    <br />
-                                 </td>
-                              </tr>
-                           </xsl:if>
-                           <tr>
-                              <td>
-                                 <b>Item Condition Report</b>
-                              </td>
-                           </tr>
-                           <table cellspacing="0" cellpadding="5" border="1">
-                              <tr>
-                                 <td>
-                                    <b>__Binding Issues</b>
-                                 </td>
-                                 <td>
-                                    <b>__Writing/Highlighting</b>
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <td>
-                                    <b>__Cover/Spine Issues</b>
-                                 </td>
-                                 <td>
-                                    <b>__Liquid Damage/Stained</b>
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <td>
-                                    <b>__Other (describe below)</b>
-                                 </td>
-                                 <td>
-                                    <b>__Missing CD/DVD</b>
-                                 </td>
-                              </tr>
-                           </table>
-
-                           <tr>
-                              <td>
-                                 <b>
-                                    <xsl:text>_______________________________________________</xsl:text>
-                                 </b>
-                                 <br />
-                                 <br />
-                              </td>
-                           </tr>
--->
                            <xsl:choose>
                               <xsl:when test="(notification_data/partner_system_type!='ALMA')">
                                  <table width="45%">
@@ -741,352 +607,7 @@ Blake's office, Pullman, WA 99163 (2 internal commas)
                                        <br />
                                     </td>
                                  </tr>
-                                 <!-- Borrowing Libraries Start -->
-                                 <!-- Bakersfield -->
-                                 <xsl:if test="(notification_data/partner_name='CSU Bakersfield - CSUB Library')">
-                                    <table width="45%">
-                                       <tr>
-                                          <td>
-                                             <center>
-                                                <b>Delivered To</b>
-                                             </center>
-                                             <center>
-                                                <img src="https://ispiecsu.files.wordpress.com/2023/03/bakersfield.png" />
-                                             </center>
-                                          </td>
-                                       </tr>
-                                    </table>
-                                 </xsl:if>
-                                 <!-- Channel Islands -->
-                                 <xsl:if test="(notification_data/partner_name='California State University, Channel Islands - John Spoor Broome Library')">
-                                    <table width="45%">
-                                       <tr>
-                                          <td>
-                                             <center>
-                                                <b>Delivered To</b>
-                                             </center>
-                                             <center>
-                                                <img src="https://ispiecsu.files.wordpress.com/2023/03/channel-islands.png" />
-                                             </center>
-                                          </td>
-                                       </tr>
-                                    </table>
-                                 </xsl:if>
-                                 <!-- Chico -->
-                                 <xsl:if test="(notification_data/partner_name='CSU, Chico - Meriam Library')">
-                                    <table width="45%">
-                                       <tr>
-                                          <td>
-                                             <center>
-                                                <b>Delivered To</b>
-                                             </center>
-                                             <center>
-                                                <img src="https://ispiecsu.files.wordpress.com/2023/03/chico-2.png" />
-                                             </center>
-                                          </td>
-                                       </tr>
-                                    </table>
-                                 </xsl:if>
-                                 <!-- Dominguez Hills -->
-                                 <xsl:if test="(notification_data/partner_name='California State University, Dominguez Hills - University Library')">
-                                    <table width="45%">
-                                       <tr>
-                                          <td>
-                                             <center>
-                                                <b>Delivered To</b>
-                                             </center>
-                                             <center>
-                                                <img src="https://ispiecsu.files.wordpress.com/2023/03/dominguez-hills.png" />
-                                             </center>
-                                          </td>
-                                       </tr>
-                                    </table>
-                                 </xsl:if>
-                                 <!-- East Bay -->
-                                 <xsl:if test="(notification_data/partner_name='California State University, East Bay - Hayward')">
-                                    <table width="45%">
-                                       <tr>
-                                          <td>
-                                             <center>
-                                                <b>Delivered To</b>
-                                             </center>
-                                             <center>
-                                                <img src="https://ispiecsu.files.wordpress.com/2023/03/east-bay.png" />
-                                             </center>
-                                          </td>
-                                       </tr>
-                                    </table>
-                                 </xsl:if>
-                                 <!-- Fresno -->
-                                 <xsl:if test="(notification_data/partner_name='Fresno State - FRESNO STATE MAIN')">
-                                    <table width="45%">
-                                       <tr>
-                                          <td>
-                                             <center>
-                                                <b>Delivered To</b>
-                                             </center>
-                                             <center>
-                                                <img src="https://ispiecsu.files.wordpress.com/2023/03/fresno-1.png" />
-                                             </center>
-                                          </td>
-                                       </tr>
-                                    </table>
-                                 </xsl:if>
-                                 <!-- Fullerton -->
-                                 <xsl:if test="(notification_data/partner_name='California State University, Fullerton - Pollak Library')">
-                                    <table width="45%">
-                                       <tr>
-                                          <td>
-                                             <center>
-                                                <b>Delivered To</b>
-                                             </center>
-                                             <center>
-                                                <img src="https://ispiecsu.files.wordpress.com/2023/03/fullerton-23.png" />
-                                             </center>
-                                          </td>
-                                       </tr>
-                                    </table>
-                                 </xsl:if>
-                                 <!-- Humboldt -->
-                                 <xsl:if test="(notification_data/partner_name='Cal Poly Humboldt - Humboldt State University Library')">
-                                    <table width="45%">
-                                       <tr>
-                                          <td>
-                                             <center>
-                                                <b>Delivered To</b>
-                                             </center>
-                                             <center>
-                                                <img src="https://ispiecsu.files.wordpress.com/2023/03/humboldt.png" />
-                                             </center>
-                                          </td>
-                                       </tr>
-                                    </table>
-                                 </xsl:if>
-                                 <!-- Long Beach -->
-                                 <xsl:if test="(notification_data/partner_name='California State University, Long Beach - University Library')">
-                                    <table width="45%">
-                                       <tr>
-                                          <td>
-                                             <center>
-                                                <b>Delivered To</b>
-                                             </center>
-                                             <center>
-                                                <img src="https://ispiecsu.files.wordpress.com/2023/03/long-beach.png" />
-                                             </center>
-                                          </td>
-                                       </tr>
-                                    </table>
-                                 </xsl:if>
-                                 <!-- Los Angeles -->
-                                 <xsl:if test="(notification_data/partner_name='California State University, Los Angeles - John F Kennedy Memorial Library')">
-                                    <table width="45%">
-                                       <tr>
-                                          <td>
-                                             <center>
-                                                <b>Delivered To</b>
-                                             </center>
-                                             <center>
-                                                <img src="https://ispiecsu.files.wordpress.com/2023/03/los-angeles.png" />
-                                             </center>
-                                          </td>
-                                       </tr>
-                                    </table>
-                                 </xsl:if>
-                                 <!-- Maritime -->
-                                 <xsl:if test="(notification_data/partner_name='Cal Maritime - California Maritime Academy Library')">
-                                    <table width="45%">
-                                       <tr>
-                                          <td>
-                                             <center>
-                                                <b>Delivered To</b>
-                                             </center>
-                                             <center>
-                                                <img src="https://ispiecsu.files.wordpress.com/2023/03/maritime.jpg" />
-                                             </center>
-                                          </td>
-                                       </tr>
-                                    </table>
-                                 </xsl:if>
-                                 <!-- Monterey Bay -->
-                                 <xsl:if test="(notification_data/partner_name='California State University, Monterey Bay - CSU Monterey Bay Library')">
-                                    <table width="45%">
-                                       <tr>
-                                          <td>
-                                             <center>
-                                                <b>Delivered To</b>
-                                             </center>
-                                             <center>
-                                                <img src="https://ispiecsu.files.wordpress.com/2023/03/monterey-bay.png" />
-                                             </center>
-                                          </td>
-                                       </tr>
-                                    </table>
-                                 </xsl:if>
-                                 <!-- Moss Landing -->
-                                 <xsl:if test="(notification_data/partner_name='California State University Moss Landing Marine Laboratories - MLML/MBARI Research Library')">
-                                    <table width="45%">
-                                       <tr>
-                                          <td>
-                                             <center>
-                                                <b>Delivered To</b>
-                                             </center>
-                                             <center>
-                                                <img src="https://ispiecsu.files.wordpress.com/2023/03/moss-landing.png" />
-                                             </center>
-                                          </td>
-                                       </tr>
-                                    </table>
-                                 </xsl:if>
-                                 <!-- Northridge -->
-                                 <xsl:if test="(notification_data/partner_name='California State University, Northridge - Interlibrary Loan')">
-                                    <table width="45%">
-                                       <tr>
-                                          <td>
-                                             <center>
-                                                <b>Delivered To</b>
-                                             </center>
-                                             <center>
-                                                <img src="https://ispiecsu.files.wordpress.com/2023/03/northridge-2.png" />
-                                             </center>
-                                          </td>
-                                       </tr>
-                                    </table>
-                                 </xsl:if>
-                                 <!-- Pomona -->
-                                 <xsl:if test="(notification_data/partner_name='California State Polytechnic University Pomona - Cal Poly Pomona University Library')">
-                                    <table width="45%">
-                                       <tr>
-                                          <td>
-                                             <center>
-                                                <b>Delivered To</b>
-                                             </center>
-                                             <center>
-                                                <img src="https://ispiecsu.files.wordpress.com/2023/03/pomona.png" />
-                                             </center>
-                                          </td>
-                                       </tr>
-                                    </table>
-                                 </xsl:if>
-                                 <!-- Sacramento -->
-                                 <xsl:if test="(notification_data/partner_name='Sacramento State - University Library')">
-                                    <table width="45%">
-                                       <tr>
-                                          <td>
-                                             <center>
-                                                <b>Delivered To</b>
-                                             </center>
-                                             <center>
-                                                <img src="https://ispiecsu.files.wordpress.com/2023/03/sacramento.png" />
-                                             </center>
-                                          </td>
-                                       </tr>
-                                    </table>
-                                 </xsl:if>
-                                 <!-- San Diego -->
-                                 <xsl:if test="(notification_data/partner_name='San Diego State University Library - SDSU Library')">
-                                    <table width="45%">
-                                       <tr>
-                                          <td>
-                                             <center>
-                                                <b>Delivered To</b>
-                                             </center>
-                                             <center>
-                                                <img src="https://ispiecsu.files.wordpress.com/2023/03/san-diego.png" />
-                                             </center>
-                                          </td>
-                                       </tr>
-                                    </table>
-                                 </xsl:if>
-                                 <!-- San Francisco -->
-                                 <xsl:if test="(notification_data/partner_name='San Francisco State University - Main Library')">
-                                    <table width="45%">
-                                       <tr>
-                                          <td>
-                                             <center>
-                                                <b>Delivered To</b>
-                                             </center>
-                                             <center>
-                                                <img src="https://ispiecsu.files.wordpress.com/2023/03/san-francisco.png" />
-                                             </center>
-                                          </td>
-                                       </tr>
-                                    </table>
-                                 </xsl:if>
-                                 <!-- San Jose -->
-                                 <xsl:if test="(notification_data/partner_name='San Jose State University - SJSU Library')">
-                                    <table width="45%">
-                                       <tr>
-                                          <td>
-                                             <center>
-                                                <b>Delivered To</b>
-                                             </center>
-                                             <center>
-                                                <img src="https://ispiecsu.files.wordpress.com/2023/03/san-jose-2.png" />
-                                             </center>
-                                          </td>
-                                       </tr>
-                                    </table>
-                                 </xsl:if>
-                                 <!-- San Luis Obispo -->
-                                 <xsl:if test="(notification_data/partner_name='Cal Poly University San Luis Obispo - Robert E. Kennedy Library')">
-                                    <table width="45%">
-                                       <tr>
-                                          <td>
-                                             <center>
-                                                <b>Delivered To</b>
-                                             </center>
-                                             <center>
-                                                <img src="https://ispiecsu.files.wordpress.com/2023/03/san-luis-obispo-2.png" />
-                                             </center>
-                                          </td>
-                                       </tr>
-                                    </table>
-                                 </xsl:if>
-                                 <!-- San Marcos -->
-                                 <xsl:if test="(notification_data/partner_name='California State University San Marcos - Library')">
-                                    <table width="45%">
-                                       <tr>
-                                          <td>
-                                             <center>
-                                                <b>Delivered To</b>
-                                             </center>
-                                             <center>
-                                                <img src="https://ispiecsu.files.wordpress.com/2023/03/san-marcos.png" />
-                                             </center>
-                                          </td>
-                                       </tr>
-                                    </table>
-                                 </xsl:if>
-                                 <!--Sonoma -->
-                                 <xsl:if test="(notification_data/partner_name='Sonoma State University - University Library')">
-                                    <table width="45%">
-                                       <tr>
-                                          <td>
-                                             <center>
-                                                <b>Delivered To</b>
-                                             </center>
-                                             <center>
-                                                <img src="https://ispiecsu.files.wordpress.com/2023/03/sonoma-1.png" />
-                                             </center>
-                                          </td>
-                                       </tr>
-                                    </table>
-                                 </xsl:if>
-                                 <!-- Stanislaus -->
-                                 <xsl:if test="(notification_data/partner_name='California State University, Stanislaus - CSU Stanislaus Library')">
-                                    <table width="45%">
-                                       <tr>
-                                          <td>
-                                             <center>
-                                                <b>Delivered To</b>
-                                             </center>
-                                             <center>
-                                                <img src="https://ispiecsu.files.wordpress.com/2023/03/stanislaus-1.png" />
-                                             </center>
-                                          </td>
-                                       </tr>
-                                    </table>
-                                 </xsl:if>
+
                               </xsl:otherwise>
                            </xsl:choose>
                         </xsl:if>
@@ -1122,6 +643,32 @@ Blake's office, Pullman, WA 99163 (2 internal commas)
                                        </td>
                                     </tr>
                                  </xsl:if>
+<!--Workaround to alert staff when non-matched holdings result in Alma selecting a Related Record for an Article request-->
+<!--Define variables-->
+								<xsl:variable name="material-type" select="notification_data/items/physical_item_display_for_printing/material_type" />
+<!--No need to display Paging Title unless it is a book-->
+								<xsl:if test="not(notification_data/items/physical_item_display_for_printing/title='') and ($material-type = 'BOOK')">
+                                    <tr>
+                                       <td>
+                                          <b>Paging Title:&#160;</b>
+                                          <xsl:text />
+                                          <xsl:value-of select="substring(notification_data/items/physical_item_display_for_printing/title, 1, 100)" />
+                                       </td>
+                                    </tr>
+                                 </xsl:if>
+<!--Define variables-->
+								<xsl:variable name="metadata-title" select="notification_data/metadata/title" />
+								<xsl:variable name="paging-title" select="notification_data/items/physical_item_display_for_printing/title" />
+<!--Test whether there is a mismatch between the requested title and the supplied title, but only if the supplied material type is BOOK-->
+								<xsl:if test="not($metadata-title = $paging-title) and ($material-type = 'BOOK')">
+<!--If there is a mismatch, print an alert for staff-->
+									<tr><td><br/></td></tr>
+									<tr><td style="border: 1px solid black;">
+										<b>Alert! the Article Title and the Paging Title do not match!</b>
+									</td></tr>
+									<tr><td><br/></td></tr>
+								</xsl:if>
+<!--End workaround-->
                                  <tr>
                                     <td>
                                        <b>Author:&#160;</b>
