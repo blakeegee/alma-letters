@@ -253,288 +253,187 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
       			   <xsl:if test="$libraryname != ''" >
 		<tr>
-                   <td><h3><strong>Pickup at: <xsl:value-of select="$libraryname"/></strong></h3></td>
+                   <td><h2><strong>Pickup Location: <xsl:value-of select="$libraryname"/></strong></h2></td>
         </tr>
    </xsl:if>
-			<tr><xsl:choose>
+			<xsl:choose>
 			<xsl:when test="notification_data/partner_name='CC'">
-				<tr>			
-					<td><h3><strong>Partner: Clark College</strong></h3></td>
-				</tr>
+				<tr><td><h2><strong>Ship To: CLARK - Clark College</strong></h2></td></tr>
 			</xsl:when>
 			<xsl:when test="notification_data/partner_name='CCC'">
-				<tr>			
-					<td><h3><strong>Partner: Clackamas Community College</strong></h3></td>
-				</tr>
+				<tr><td><h2><strong>Ship To: CLCKM - Clackamas Community College</strong></h2></td></tr>
 			</xsl:when>	
-			<xsl:when test="notification_data/partner_name='CHEMEK'">
-				<tr>			
-					<td><h3><strong>Partner: Chemeketa Community College</strong></h3></td>
-				</tr>
-			</xsl:when>	
+			<xsl:when test="contains(notification_data/partner_name, 'Chemeketa') or notification_data/partner_name='CHEMEK'">
+				<tr><td><h2><strong>Ship To: CHEMEK - Chemeketa Community College</strong></h2></td></tr>
+			</xsl:when>
 			<xsl:when test="notification_data/partner_name='COCC'">
-				<tr>			
-					<td><h3><strong>Partner: Central Oregon Community College</strong></h3></td>
-				</tr>
+				<tr><td><h2><strong>Ship To: COCC - Central Oregon Community College</strong></h2></td></tr>
 			</xsl:when>	
-			<xsl:when test="notification_data/partner_name='CWU'">
-				<tr>			
-					<td><h3><strong>Partner: Central Washington University</strong></h3></td>
-				</tr>
+			<xsl:when test="contains(notification_data/partner_name, 'Central Washington') or notification_data/partner_name='CWU'">
+				<tr><td><h2><strong>Ship To: CWU - Central Washington University</strong></h2></td></tr>
 			</xsl:when>	
 			<xsl:when test="notification_data/partner_name='EOU'">
-				<tr>			
-					<td><h3><strong>Partner: Eastern Oregon University</strong></h3></td>
-				</tr>
+				<tr><td><h2><strong>Ship To: EOU - Eastern Oregon University</strong></h2></td></tr>
 			</xsl:when>	
-			<xsl:when test="notification_data/partner_name='EVSC'">
-				<tr>			
-					<td><h3><strong>Partner: The Evergreen State College</strong></h3></td>
-				</tr>
-			</xsl:when>	
+			<xsl:when test="contains(notification_data/partner_name, 'Evergreen State') or notification_data/partner_name='EVSC'">
+				<tr><td><h2><strong>Ship To: TESC - The Evergreen State College</strong></h2></td></tr>
+			</xsl:when>				
 			<xsl:when test="notification_data/partner_name='EWU JFK'">
-				<tr>			
-					<td><h3><strong>Partner: Eastern Washington University</strong></h3></td>
-				</tr>
-			</xsl:when>	
-			<xsl:when test="notification_data/partner_name='EWU_RIVER'">
-				<tr>			
-					<td><h3><strong>Partner: Spokane Academic - EWU</strong></h3></td>
-				</tr>
+				<tr><td><h2><strong>Ship To: EWU - Eastern Washington University</strong></h2></td></tr>
 			</xsl:when>	
 			<xsl:when test="notification_data/partner_name='GFOX_MLRC'">
-				<tr>			
-					<td><h3><strong>Partner: George Fox University - Newberg</strong></h3></td>
-				</tr>
+				<tr><td><h2><strong>Ship To: GFOX - George Fox University</strong></h2></td></tr>
 			</xsl:when>	
-			<xsl:when test="notification_data/partner_name='GFOX_PCL'">
-				<tr>			
-					<td><h3><strong>Partner: George Fox University - Portland</strong></h3></td>
-				</tr>
-			</xsl:when>
 			<xsl:when test="notification_data/partner_name='GONZ'">
-				<tr>			
-					<td><h3><strong>Partner: Gonzaga University</strong></h3></td>
-				</tr>
-			</xsl:when>
-			
+				<tr><td><h2><strong>Ship To: GONZ - Gonzaga University</strong></h2></td></tr>
+			</xsl:when>	
 			<xsl:when test="notification_data/partner_name='LANECC'">
-				<tr>			
-					<td><h3><strong>Partner: Lane Community College</strong></h3></td>
-				</tr>
+				<tr><td><h2><strong>Ship To: LANE - Lane Community College</strong></h2></td></tr>
 			</xsl:when>		
 			<xsl:when test="notification_data/partner_name='LCC'">
-				<tr>			
-					<td><h3><strong>Partner: Lewis &amp; Clark College</strong></h3></td>
-				</tr>
+				<tr><td><h2><strong>Ship To: LEWIS - Lewis &amp; Clark College</strong></h2></td></tr>
 			</xsl:when>	
-			<xsl:when test="notification_data/partner_name='LINF_MAC'">
-				<tr>			
-					<td><h3><strong>Partner: Linfield University - McMinnville</strong></h3></td>
-				</tr>
+			<xsl:when test="$libraryname='McMinnville' or $libraryname='OCE via Mail'">
+				<tr><td><h2><strong>Ship To: LINF-MAC - Linfield University McMinnville</strong></h2></td></tr>
 			</xsl:when>	
-			<xsl:when test="notification_data/partner_name='LINF_PDX'">
-				<tr>			
-					<td><h3><strong>Partner: Linfield University - Portland</strong></h3></td>
-				</tr>
-			</xsl:when>	
+			<xsl:when test="$libraryname='Portland' and contains(notification_data/partner_name, 'LINF')">
+				<tr><td><h2><strong>Ship To: LINF-PDX - Linfield University Portland</strong></h2></td></tr>
+			</xsl:when>		
 			<xsl:when test="notification_data/partner_name='MHCC'">
-				<tr>			
-					<td><h3><strong>Partner: Mount Hood Community College</strong></h3></td>
-				</tr>
+				<tr><td><h2><strong>Ship To: MHCC - Mt. Hood Community College</strong></h2></td></tr>
 			</xsl:when>		
-			<xsl:when test="notification_data/partner_name='OHSU'">
-				<tr>			
-					<td><h3><strong>Partner: Oregon Health and Science University</strong></h3></td>
-				</tr>
+			<xsl:when test="contains(notification_data/partner_name, 'Oregon Health') or notification_data/partner_name='OHSU'">
+				<tr><td><h2><strong>Ship To: OHSU - Oregon Health &amp; Science University</strong></h2></td></tr>
+			</xsl:when>				
+			<xsl:when test="$libraryname='Klamath Falls Library'">
+				<tr><td><h2><strong>Ship To: OIT-KFLS - Oregon Tech Klamath Falls</strong></h2></td></tr>
 			</xsl:when>	
-			<xsl:when test="notification_data/partner_name='OIT_KFLS'">
-				<tr>			
-					<td><h3><strong>Partner: Oregon Tech - Klamath Falls</strong></h3></td>
-				</tr>
+			<xsl:when test="$libraryname='Portland-Metro Library'">
+				<tr><td><h2><strong>Ship To: OIT-PM - Oregon Tech Portland Metro</strong></h2></td></tr>
 			</xsl:when>	
-			<xsl:when test="notification_data/partner_name='OIT_WILS'">
-				<tr>			
-					<td><h3><strong>Partner: Oregon Tech - Wilsonville</strong></h3></td>
-				</tr>
-			</xsl:when>	
-			<xsl:when test="notification_data/partner_name='OSU'">
-				<tr>			
-					<td><h3><strong>Partner: Oregon State University</strong></h3></td>
-				</tr>
+			<xsl:when test="$libraryname='Personal Delivery'and contains(notification_data/partner_name, 'OSU')">
+				<tr><td><h2><strong>Ship To: OSU-COR - Oregon State University Corvallis</strong></h2></td></tr>
 			</xsl:when>
-			<xsl:when test="notification_data/incoming_request/partner_name='OSU_BEND'">
-				<tr>			
-					<td><h3><strong>Partner: OSU Cascades – Bend</strong></h3></td>
-				</tr>
+			<xsl:when test="$libraryname=' Valley Library-Corvallis' or notification_data/partner_name='OSU'">
+				<tr><td><h2><strong>Ship To: OSU-COR - Oregon State University Corvallis</strong></h2></td></tr>
 			</xsl:when>	
-			<xsl:when test="notification_data/incoming_request/partner_name='OSU_NEWPORT'">
-				<tr>			
-					<td><h3><strong>Partner: OSU Hatfield Marine Science Center</strong></h3></td>
-				</tr>
-			</xsl:when>			
-			<xsl:when test="notification_data/partner_name='PCC'">
-				<tr>			
-					<td><h3><strong>Partner: Portland Community College</strong></h3></td>
-				</tr>
+			<xsl:when test="$libraryname='OSU-Cascades Library-Bend' or notification_data/partner_name='OSU_BEND'">
+				<tr><td><h2><strong>Ship To: OSU-BEND - Oregon State University Cascades</strong></h2></td></tr>
+			</xsl:when>	
+            <xsl:when test="$libraryname='Guin Library-Newport' or notification_data/partner_name='OSU_NEWPORT'">
+                <tr><td><h2><strong>Ship To: OSU-NEWP - Oregon State University Newport</strong></h2></td></tr>
+            </xsl:when>
+			<xsl:when test="contains(notification_data/partner_name, 'Rock Creek') or notification_data/partner_name='PCC'">
+				<tr><td><h2><strong>Ship To: PCC - Portland Community College</strong></h2></td></tr>
+			</xsl:when>				
+			<xsl:when test="contains(notification_data/partner_name, 'PSU')">
+				<tr><td><h2><strong>Ship To: PSU - Portland State University</strong></h2></td></tr>
+			</xsl:when>	
+			<xsl:when test="$libraryname='Eugene' or $libraryname='Forest Grove' or $libraryname='Woodburn'">
+				<tr><td><h2><strong>Ship To: PU-FG - Pacific University Forest Grove</strong></h2></td></tr>
+			</xsl:when>	
+			<xsl:when test="$libraryname='Hillsboro'">
+				<tr><td><h2><strong>Ship To: PU-HILS - Pacific University Hillsboro</strong></h2></td></tr>
 			</xsl:when>		
-			<xsl:when test="notification_data/partner_name='PSU'">
-				<tr>			
-					<td><h3><strong>Partner: Portland State University</strong></h3></td>
-				</tr>
-			</xsl:when>	
-			<xsl:when test="notification_data/partner_name='PU_FG'">
-				<tr>			
-					<td><h3><strong>Partner: Pacific University - Forest Grove</strong></h3></td>
-				</tr>
-			</xsl:when>	
-			<xsl:when test="notification_data/partner_name='PU_HPC'">
-				<tr>			
-					<td><h3><strong>Partner: Pacific University - Hillsboro</strong></h3></td>
-				</tr>
-			</xsl:when>	
-			<xsl:when test="notification_data/partner_name='REED'">
-				<tr>			
-					<td><h3><strong>Partner: Reed College</strong></h3></td>
-				</tr>
+			<xsl:when test="contains (notification_data/partner_name, 'Reed') or notification_data/partner_name='REED'">
+				<tr><td><h2><strong>Ship To: REED - Reed College</strong></h2></td></tr>
 			</xsl:when>		
-			<xsl:when test="notification_data/partner_name='SEAU_LEMIEUX'">
-				<tr>			
-					<td><h3><strong>Partner: Seattle University</strong></h3></td>
-				</tr>
+			<xsl:when test="notification_data/partner_name='SEAU_LEMIEUX' or notification_data/partner_name='SEAU_LAW'">
+				<tr><td><h2><strong>Ship To: SEAU - Seattle University</strong></h2></td></tr>
 			</xsl:when>	
-			<xsl:when test="notification_data/partner_name='SEAU_LAW'">
-				<tr>			
-					<td><h3><strong>Partner: Seattle University - Law</strong></h3></td>
-				</tr>
-			</xsl:when>	
-			<xsl:when test="notification_data/partner_name='SOU_SOU'">
-				<tr>			
-					<td><h3><strong>Partner: Southern Oregon University</strong></h3></td>
-				</tr>
-			</xsl:when>	
-			<xsl:when test="notification_data/partner_name='SOU_RCCM'">
-				<tr>			
-					<td><h3><strong>Partner: Rogue Community College - SOU</strong></h3></td>
-				</tr>
+			<xsl:when test="$libraryname='Hannon Library' or contains(notification_data/partner_name, 'Southern Oregon')">
+				<tr><td><h2><strong>Ship To: SOU - Southern Oregon University</strong></h2></td></tr>
+			</xsl:when>
+			<xsl:when test="$libraryname='Medford - RCC'">
+				<tr><td><h2><strong>Ship To: RCC - Rogue Community College/SOU</strong></h2></td></tr>
 			</xsl:when>	
 			<xsl:when test="notification_data/partner_name='SPU'">
-				<tr>			
-					<td><h3><strong>Partner: Seattle Pacific University</strong></h3></td>
-				</tr>
+				<tr><td><h2><strong>Ship To: SPU - Seattle Pacific University</strong></h2></td></tr>
 			</xsl:when>	
 			<xsl:when test="notification_data/partner_name='STMU'">
-				<tr>			
-					<td><h3><strong>Partner: Saint Martin's University</strong></h3></td>
-				</tr>
+				<tr><td><h2><strong>Ship To: STMU - Saint Martin's University</strong></h2></td></tr>
 			</xsl:when>	
-			<xsl:when test="notification_data/partner_name='UID_MAIN'">
-				<tr>			
-					<td><h3><strong>Partner: University of Idaho</strong></h3></td>
-				</tr>
+			<xsl:when test="contains(notification_data/partner_name, 'UI ') or contains(notification_data/partner_name, 'UID')">
+				<tr><td><h2><strong>Ship To: UI - University of Idaho</strong></h2></td></tr>
+			</xsl:when>
+			<xsl:when test="notification_data/partner_name='UO' and contains($libraryname, 'Delivery')">
+				<tr><td><h2><strong>Ship To: UO-EUG - University of Oregon Eugene</strong></h2></td></tr>
 			</xsl:when>	
-			<xsl:when test="notification_data/partner_name='UID_LAW'">
-				<tr>			
-					<td><h3><strong>Partner: University of Idaho - Law</strong></h3></td>
-				</tr>
-			</xsl:when>	
-			<xsl:when test="notification_data/partner_name='UO'">
-				<tr>			
-					<td><h3><strong>Partner: University of Oregon</strong></h3></td>
-				</tr>
-			</xsl:when>	
+			<xsl:when test="$libraryname='Design Library' or $libraryname='John E. Jaqua Law Library' or $libraryname='Knight Library' or $libraryname='Mathematics Library' or $libraryname='Price Science Commons and Research Library'">
+				<tr><td><h2><strong>Ship To: UO-EUG - University of Oregon Eugene</strong></h2></td></tr>
+			</xsl:when>
+			<xsl:when test="contains(notification_data/partner_name, 'Knight Library')">
+				<tr><td><h2><strong>Ship To: UO-EUG - University of Oregon Eugene</strong></h2></td></tr>
+			</xsl:when>				
+			<xsl:when test="$libraryname='UO Portland Library'">
+				<tr><td><h2><strong>Ship To: UO-PDX - University of Oregon Portland</strong></h2></td></tr>
+			</xsl:when>
 			<xsl:when test="notification_data/partner_name='UPORT'">
-				<tr>			
-					<td><h3><strong>Partner: University of Portland</strong></h3></td>
-				</tr>
+				<tr><td><h2><strong>Ship To: UPORT - University of Portland</strong></h2></td></tr>
 			</xsl:when>	
 			<xsl:when test="notification_data/partner_name='UPUGS'">
-				<tr>			
-					<td><h3><strong>Partner: University of Puget Sound</strong></h3></td>
-				</tr>
+				<tr><td><h2><strong>Ship To: UPUGS - University of Puget Sound</strong></h2></td></tr>
 			</xsl:when>	
 			<xsl:when test="notification_data/partner_name='UW'">
-				<tr>			
-					<td><h3><strong>Partner: University of Washington</strong></h3></td>
-				</tr>
+				<tr><td><h2><strong>Ship To: UW - University of Washington</strong></h2></td></tr>
+			</xsl:when>		
+			<xsl:when test="$libraryname='PML' or $libraryname='Billings' or $libraryname='Missoula'">
+				<tr><td><h2><strong>Ship To: WALLA - Walla Walla University</strong></h2></td></tr>
 			</xsl:when>	
-			<xsl:when test="notification_data/partner_name='WALLA_PETERSON'">
-				<tr>			
-					<td><h3><strong>Partner: Walla Walla University</strong></h3></td>
-				</tr>
-			</xsl:when>	
-			<xsl:when test="notification_data/partner_name='WALLA_PORTLAND'">
-				<tr>			
-					<td><h3><strong>Partner: Walla Walla University - Portland</strong></h3></td>
-				</tr>
+			<xsl:when test="$libraryname='Portland' and contains(notification_data/partner_name, 'WALLA')">
+				<tr><td><h2><strong>Ship To: WPU - Warner Pacific University / 
+						<br/>(Participating) Walla Walla University - School of Nursing</strong></h2></td></tr>
 			</xsl:when>	
 			<xsl:when test="notification_data/partner_name='WHITC'">
-				<tr>			
-					<td><h3><strong>Partner: Whitman College</strong></h3></td>
-				</tr>
+				<tr><td><h2><strong>Ship To: WHITC - Whitman College</strong></h2></td></tr>
 			</xsl:when>	
-			<xsl:when test="notification_data/partner_name='WOU'">
-				<tr>			
-					<td><h3><strong>Partner: Western Oregon University</strong></h3></td>
-				</tr>
+			<xsl:when test="notification_data/partner_name='WOU' or contains(notification_data/partner_name, 'Western Oregon')">
+				<tr><td><h2><strong>Ship To: WOU - Western Oregon University</strong></h2></td></tr>
 			</xsl:when>	
 			<xsl:when test="notification_data/partner_name='WPC'">
-				<tr>			
-					<td><h3><strong>Partner: Warner Pacific University</strong></h3></td>
-				</tr>
+				<tr><td><h2><strong>Ship To: WPU - Warner Pacific University</strong></h2></td></tr>
+			</xsl:when>		
+			<xsl:when test="contains($libraryname, 'Pullman') or $libraryname='WSU Global Campus Delivery' or $libraryname='WSU Extension Office Delivery' or $libraryname='Owen Science and Engineering Library' or $libraryname='Kemble Stout Music Listening Library' or $libraryname='Holland and Terrell Libraries' or $libraryname='Everett Campus Delivery'">
+				<tr><td><h2><strong>Ship To: WSU-PUL - Washington State University Pullman</strong></h2></td></tr>
 			</xsl:when>	
-			<xsl:when test="notification_data/partner_name='WSU_HOLLTERR'">
-				<tr>			
-					<td><h3><strong>Partner: Washington State University - Pullman</strong></h3></td>
-				</tr>
+			<xsl:when test="contains(notification_data/partner_name, 'Holland')">
+				<tr><td><h2><strong>Ship To: WSU-PUL - Washington State University Pullman</strong></h2></td></tr>
 			</xsl:when>	
-			<xsl:when test="notification_data/partner_name='WSU_RPOINT'">
-				<tr>			
-					<td><h3><strong>Partner: Washington State University - Spokane</strong></h3></td>
-				</tr>
+			<xsl:when test="$libraryname='WSU Health Sciences Library' or $libraryname='Nursing@Yakima Summit Location'">
+				<tr><td><h2><strong>Ship To: WSU-SPOK - Washington State University Spokane</strong></h2></td></tr>
 			</xsl:when>	
-			<xsl:when test="notification_data/partner_name='WSU_TRICITIES'">
-				<tr>			
-					<td><h3><strong>Partner: Washington State University - TriCities</strong></h3></td>
-				</tr>
+			<xsl:when test="contains(notification_data/partner_name, 'WSU Health')">
+				<tr><td><h2><strong>Ship To: WSU-SPOK - Washington State University Spokane</strong></h2></td></tr>
+			</xsl:when>			
+			<xsl:when test="$libraryname='Tri-Cities Library' or $libraryname='Tri-Cities Office Delivery'">
+				<tr><td><h2><strong>Ship To: WSU-TRI - Washington State University TriCities</strong></h2></td></tr>
 			</xsl:when>	
-			<xsl:when test="notification_data/partner_name='WSU_VANCOUVER'">
-				<tr>			
-					<td><h3><strong>Partner: Washington State University - Vancouver</strong></h3></td>
-				</tr>
+			<xsl:when test="contains(notification_data/partner_name, 'Tri-Cities')">
+				<tr><td><h2><strong>Ship To: WSU-TRI - Washington State University TriCities</strong></h2></td></tr>
+			</xsl:when>
+			<xsl:when test="$libraryname='Vancouver Library' or $libraryname='Vancouver Office Delivery'">
+				<tr><td><h2><strong>Ship To: WSU-VAN - Washington State University Vancouver</strong></h2></td></tr>
+			</xsl:when>
+			<xsl:when test="contains(notification_data/partner_name, 'Vancouver')">
+				<tr><td><h2><strong>Ship To: WSU-VAN - Washington State University Vancouver</strong></h2></td></tr>
 			</xsl:when>	
-			<xsl:when test="notification_data/partner_name='WU_MOH'">
-				<tr>			
-					<td><h3><strong>Partner: Willamette University</strong></h3></td>
-				</tr>
+			<xsl:when test="$libraryname='MOH' or $libraryname='WU LAW'">
+				<tr><td><h2><strong>Ship To: WILL - Willamette University</strong></h2></td></tr>
 			</xsl:when>	
-			<xsl:when test="notification_data/partner_name='WU_LAW'">
-				<tr>			
-					<td><h3><strong>Partner: Willamette University - Law</strong></h3></td>
-				</tr>
+			<xsl:when test="$libraryname='PNCA'">
+				<tr><td><h2><strong>Ship To: PNCA - PNW College of Art/Willamette University</strong></h2></td></tr>
 			</xsl:when>	
-			<xsl:when test="notification_data/partner_name='WU_PNCA'">
-				<tr>			
-					<td><h3><strong>Partner: Willamette University - PNCA</strong></h3></td>
-				</tr>
-			</xsl:when>	
-			<xsl:when test="notification_data/partner_name='WWO'">
-				<tr>			
-					<td><h3><strong>Partner: Whitworth University</strong></h3></td>
-				</tr>
+			<xsl:when test="notification_data/partner_name='WW'">
+				<tr><td><h2><strong>Ship To: WWORTH - Whitworth University</strong></h2></td></tr>
 			</xsl:when>	
 			<xsl:when test="notification_data/partner_name='WWU'">
-				<tr>			
-					<td><h3><strong>Partner: Western Washington University</strong></h3></td>
-				</tr>
-			</xsl:when>
-			
+				<tr><td><h2><strong>Ship To: WWU - Western Washington University</strong></h2></td></tr>
+			</xsl:when>	
+			<!--this phrase says if none of the above tests are triggered, print the partner code from the XML in the Ship To: line -->
 			<xsl:otherwise>
-
-                                 <tr><td><h3><strong>Partner: <xsl:value-of select="notification_data/partner_name" /></strong></h3></td></tr>
-            </xsl:otherwise>
-			</xsl:choose>
-</tr>
+				<tr><td><h2><strong>Ship To: <xsl:value-of select="notification_data/partner_name"/></strong></h2></td></tr>
+			</xsl:otherwise>
+		</xsl:choose>
    </xsl:if>
 
                         <xsl:if test="notification_data/incoming_request/format='PHYSICAL' ">
