@@ -204,7 +204,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 				<tr><td><h2><strong>Ship To: CLARK - Clark College</strong></h2></td></tr>
 			</xsl:when>
 			<xsl:when test="notification_data/partner_name='CCC'">
-				<tr><td><h2><strong>Ship To: CLCKM - Clackamas Community College</strong></h2></td></tr>
+				<tr><td><h2><strong>Ship To: CLCKM - Clackamas Comlmunity College</strong></h2></td></tr>
 			</xsl:when>	
 			<xsl:when test="contains(notification_data/partner_name, 'Chemeketa') or notification_data/partner_name='CHEMEK'">
 				<tr><td><h2><strong>Ship To: CHEMEK - Chemeketa Community College</strong></h2></td></tr>
@@ -236,6 +236,10 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 			<xsl:when test="notification_data/partner_name='LCC'">
 				<tr><td><h2><strong>Ship To: LEWIS - Lewis &amp; Clark College</strong></h2></td></tr>
 			</xsl:when>	
+			<xsl:when test="notification_data/partner_name='LCC_Law'">
+				<tr><td><h2><strong>Ship To: LEWIS - Lewis &amp; Clark College</strong></h2></td></tr>
+				<tr><td><h2><strong>Pickup Location: Boley Law Library</strong></h2></td></tr>				
+			</xsl:when>
 			<xsl:when test="$libraryname='McMinnville' or $libraryname='OCE via Mail'">
 				<tr><td><h2><strong>Ship To: LINF-MAC - Linfield University McMinnville</strong></h2></td></tr>
 			</xsl:when>	
