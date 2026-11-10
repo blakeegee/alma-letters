@@ -105,13 +105,13 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 						<xsl:if test="$libraryname='Personal Delivery'and contains(notification_data/incoming_request/partner_name, 'OSU')">
 							<tr><td><h2><strong>Ship To: OSU-COR - Oregon State University Corvallis</strong></h2></td></tr>
 						</xsl:if>
-						<xsl:if test="$libraryname=' Valley Library-Corvallis'">
+						<xsl:if test="$libraryname=' Valley Library-Corvallis' or notification_data/partner_name='OSU'">
 							<tr><td><h2><strong>Ship To: OSU-COR - Oregon State University Corvallis</strong></h2></td></tr>
 						</xsl:if>	
-						<xsl:if test="$libraryname='OSU-Cascades Library-Bend'">
+						<xsl:if test="$libraryname='OSU-Cascades Library-Bend' or notification_data/partner_name='OSU_BEND'">
 							<tr><td><h2><strong>Ship To: OSU-BEND - Oregon State University Cascades</strong></h2></td></tr>
 						</xsl:if>	
-						<xsl:if test="$libraryname='Guin Library-Newport'">
+						<xsl:if test="$libraryname='Guin Library-Newport' or notification_data/partner_name='OSU_NEWPORT'">
 							<tr><td><h2><strong>Ship To: OSU-NEWP - Oregon State University Newport</strong></h2></td></tr>
 						</xsl:if>	
 						<xsl:if test="notification_data/incoming_request/partner_name='PCC'">
@@ -280,6 +280,14 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 						<td><strong>@@edition@@: </strong><xsl:value-of select="notification_data/phys_item_display/edition"/></td>
 					</tr>
 				</xsl:if>
+                <xsl:variable name="request_metadata_string" select="notification_data/incoming_request/request_metadata"/>
+                <xsl:variable name="mv_volume_string" select="substring-after($request_metadata_string, 'dc:volume&gt;')"/>
+                <xsl:variable name="mv_volume" select="substring-before($mv_volume_string, '&lt;/dc:volume')"/>
+                    <xsl:if test="$mv_volume != ''" >
+						<tr>
+							<td><strong>Volume: </strong> <xsl:value-of select="$mv_volume"/></td>
+						</tr>
+                    </xsl:if>
 <!--
 				<xsl:if test="notification_data/phys_item_display/imprint != ''">
 					<tr>
